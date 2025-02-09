@@ -5,11 +5,11 @@
 @endsection
 
 @section('content')
-<div class="profile_wrapper">
-    <h2 class="profile_title">プロフィール設定</h2>
-    <div class="form_container">
-        <form class="profile_form" action="">
-            <div class="form_group-image">
+<div class="profile__wrapper">
+    <h2 class="profile__title">プロフィール設定</h2>
+    <div class="profile__container">
+        <form class="profile__form" action="">
+            <div class="form-group-image">
                 <div class="image"></div>
                 <label for="image">画像を選択する</label>
                 <input type="file" name="image" id="image">
@@ -19,7 +19,7 @@
                     </ul> --}}
                 </div>
             </div>
-            <div class="form_group">
+            <div class="form-group">
                 <label for="email">ユーザー名</label>
                 <input type="text" name="email">
                 <div class="error">
@@ -28,7 +28,7 @@
                     </ul> --}}
                 </div>
             </div>
-            <div class="form_group">
+            <div class="form-group">
                 <label for="password">郵便番号</label>
                 <input type="password" name="password">
                 <div class="error">
@@ -37,7 +37,7 @@
                     </ul> --}}
                 </div>
             </div>
-            <div class="form_group">
+            <div class="form-group">
                 <label for="password">住所</label>
                 <input type="password" name="password">
                 <div class="error">
@@ -46,7 +46,7 @@
                     </ul> --}}
                 </div>
             </div>
-            <div class="form_group">
+            <div class="form-group">
                 <label for="password">建物名</label>
                 <input type="password" name="password">
                 <div class="error">
@@ -55,7 +55,7 @@
                     </ul> --}}
                 </div>
             </div>
-            <div class="form_group">
+            <div class="form-group">
                 <button>更新する</button>
             </div>
         </form>

@@ -1,4 +1,4 @@
-.profile_wrapper {
+.profile__wrapper {
     margin: 50px auto 0;
     text-align: center;
     width: 50%;
@@ -7,19 +7,19 @@
     font-weight: bold;
 }
 
-.profile_title {
+.profile__title {
     font-size: 30px;
     margin-bottom: 30px;
 }
 
-.form_group-image {
+.form-group-image {
     text-align: left;
     margin-bottom: 50px;
     display: flex;
     align-items: center;
 }
 
-.form_group-image>.image {
+.form-group-image>.image {
     width: 120px;
     height: 120px;
     background-color: gray;
@@ -31,7 +31,7 @@
     background-position: center;
 }
 
-.form_group-image>label {
+.form-group-image>label {
     font-size: 16px;
     border-radius: 7px;
     border: 2px solid red;
@@ -39,40 +39,40 @@
     color: red;
 }
 
-.form_group-image>input {
+.form-group-image>input {
     display: none;
 }
 
-.form_group {
+.form-group {
     display: flex;
     flex-direction: column;
     text-align: left;
 }
 
-.form_group:nth-of-type(-n+4) {
+.form-group:nth-of-type(-n+4) {
     margin-bottom: 40px;
 }
 
-.form_group:nth-of-type(5) {
+.form-group:nth-of-type(5) {
     margin-bottom: 60px;
 }
 
-.form_group>label {
+.form-group>label {
     margin-bottom: 7px;
 }
 
-.form_group>input,
-.form_group>button {
+.form-group>input,
+.form-group>button {
     padding: 10px 15px;
     border-radius: 5px;
 }
 
-.form_group>input {
+.form-group>input {
     font-size: 18px;
     border: 1px solid black;
 }
 
-.form_group>button {
+.form-group>button {
     font-size: 22px;
     font-weight: bold;
     border: none;
@@ -81,7 +81,7 @@
 }
 
 @media(max-width:1000px) {
-    .profile_wrapper {
+    .profile__wrapper {
         width: min(500px, 90vw);
     }
 }

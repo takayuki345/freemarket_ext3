@@ -10,21 +10,21 @@
 </head>
 <body>
     <header>
-        <div class="header_wrapper">
-            <p class="header_logo">
+        <div class="header__wrapper">
+            <p class="header__logo">
                 <img src="img/logo.svg" alt="logo">
             </p>
             @if( Request::is('register') == false and Request::is('login') == false)
-            <form class="header_search" action="">
+            <form class="header__search" action="">
                 <input type="text" name="keyword" placeholder="なにをお探しですか？">
                 {{-- <button>非表示ボタン</button> --}}
             </form>
-            <nav class="header_nav">
+            <nav class="header__nav">
                 <ul>
-                    <li class="header_nav__login"><a href="">ログイン</a></li>
-                    {{-- <li class="header_nav__logout"><a href="">ログアウト</a></li> --}}
-                    <li class="header_nav__mypage"><a href="">マイページ</a></li>
-                    <li class="header_nav__sell"><a href="">出品</a></li>
+                    <li class="header__nav__login"><a href="">ログイン</a></li>
+                    {{-- <li class="header__nav__logout"><a href="">ログアウト</a></li> --}}
+                    <li class="header__nav__mypage"><a href="">マイページ</a></li>
+                    <li class="header__nav__sell"><a href="">出品</a></li>
                 </ul>
             </nav>
             @endif

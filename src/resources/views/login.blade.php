@@ -5,11 +5,11 @@
 @endsection
 
 @section('content')
-<div class="login_wrapper">
-    <h2 class="login_title">ログイン</h2>
-    <div class="form_container">
-        <form class="login_form" action="">
-            <div class="form_group">
+<div class="login__wrapper">
+    <h2 class="login__title">ログイン</h2>
+    <div class="login__container">
+        <form class="login__form" action="">
+            <div class="form-group">
                 <label for="email">メールアドレス</label>
                 <input type="text" name="email">
                 <div class="error">
@@ -18,7 +18,7 @@
                     </ul> --}}
                 </div>
             </div>
-            <div class="form_group">
+            <div class="form-group">
                 <label for="password">パスワード</label>
                 <input type="password" name="password">
                 <div class="error">
@@ -27,7 +27,7 @@
                     </ul> --}}
                 </div>
             </div>
-            <div class="form_group">
+            <div class="form-group">
                 <button>ログインする</button>
             </div>
         </form>
