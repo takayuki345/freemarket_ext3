@@ -9,7 +9,7 @@
     @yield('css')
 </head>
 <body>
-    <header>
+    <header class="header">
         <div class="header__wrapper">
             <p class="header__logo">
                 <img src="img/logo.svg" alt="logo">

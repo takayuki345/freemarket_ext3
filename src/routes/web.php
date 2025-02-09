@@ -26,6 +26,18 @@ Route::get('/login', function () {
 });
 
 // Route::get('/mypage/profile', function () {
-Route::get('/edit', function () {
+Route::get('/profile', function () {
     return view('edit-profile');
+});
+
+Route::get('/address', function () {
+    return view('edit-address');
+});
+
+Route::get('/index', function () {
+    return view('index');
+});
+
+Route::get('/index2', function () {
+    return view('index2');
 });
