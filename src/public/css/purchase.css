@@ -1,0 +1,151 @@
+.purchase__wrapper {
+    margin-top: 50px;
+    display: flex;
+}
+
+.left-container {
+    flex: 11;
+}
+
+.left-container__inner {
+    margin: 0 5% 0 10%;
+}
+
+.item-info {
+    display: flex;
+    padding-bottom: 50px;
+    border-bottom: 2px solid black;
+}
+
+.item-image {
+    width: 170px;
+    height: 170px;
+    background-color: gray;
+    margin-right: 50px;
+}
+
+.item-title {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.item-price {
+    font-size: 22px;
+}
+
+.item-price>span {
+    font-size: 26px;
+}
+
+.payment-way {
+    padding-bottom: 50px;
+    border-bottom: 1px solid black;
+}
+
+.payment-title {
+    font-size: 22px;
+    margin: 30px auto 30px 30px;
+}
+
+.payment-select {
+    padding: 5px;
+    font-size: 1rem;
+    width: 200px;
+    margin-left: 80px;
+}
+
+.payment-select>option {
+    background-color: gray;
+    color: white;
+    font-size: 12px;
+}
+
+.delivery-address {
+    padding-bottom: 30px;
+    border-bottom: 1px solid black;
+    position: relative;
+}
+
+.delivery-title {
+    font-size: 22px;
+    margin: 30px auto 30px 30px;
+}
+
+.delivery-place {
+    margin-left: 80px;
+    padding-bottom: 50px;
+    /* border-bottom: 1px solid black; */
+}
+
+.delivery-place>div {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.delivery-place>div:not(:last-of-type) {
+    /* background-color: red; */
+    margin-bottom: 15px;
+}
+
+.delivery-change {
+    font-size: 22px;
+    text-decoration: none;
+    position: absolute;
+    top: 0px;
+    right: 30px;
+}
+
+.right-container {
+    flex: 7;
+}
+
+.right-container__inner {
+    margin: 0 10% 0 5%;
+}
+
+.payment-summary {
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+.payment-summary tr {
+    border: 1px solid black;
+}
+
+.payment-summary td {
+    text-align: center;
+    font-size: 22px;
+    /* font-weight: bold; */
+    line-height: 110px;
+}
+
+.purchase-form {
+
+}
+
+.purchase-form>button {
+    width: 100%;
+    line-height: 50px;
+    background-color: red;
+    color: white;
+    font-size: 22px;
+    border: none;
+    cursor: pointer;
+}
+
+
+@media(max-width:1000px) {
+    .purchase__wrapper {
+        margin-top: 20px;
+        flex-direction: column;
+    }
+
+    .left-container__inner {
+        margin: 0 5%;
+    }
+
+    .right-container__inner {
+        margin: 50px 5%;
+    }
+
+}

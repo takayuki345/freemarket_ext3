@@ -41,3 +41,15 @@ Route::get('/index', function () {
 Route::get('/index2', function () {
     return view('index2');
 });
+
+Route::get('/detail', function () {
+    return view('detail');
+});
+
+Route::get('/purchase', function () {
+    return view('purchase');
+});
+
+Route::get('/sell', function () {
+    return view('sell');
+});
