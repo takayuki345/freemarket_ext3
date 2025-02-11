@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="css/purchase.css">
+<link rel="stylesheet" href="{{ asset('css/purchase.css') }}">
 @endsection
 
 @section('content')
@@ -36,7 +36,7 @@
                 {{-- <div class="delivery-change">
                     <a href="">変更する</a>
                 </div> --}}
-                <a class="delivery-change" href="">変更する</a>
+                <a class="delivery-change" href="/purchase/address/1">変更する</a>
             </div>
         </div>
     </div>

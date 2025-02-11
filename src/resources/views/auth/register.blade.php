@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/edit-address.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
 @endsection
 
 @section('content')
-    <div class="address__wrapper">
-        <h2 class="address__title">住所の変更</h2>
-        <div class="address__container">
-            <form class="address__form" action="">
+    <div class="register__wrapper">
+        <h2 class="register__title">会員登録</h2>
+        <div class="register__container">
+            <form class="register__form" action="">
                 <div class="form-group">
-                    <label for="name">郵便番号</label>
+                    <label for="name">ユーザー名</label>
                     <input type="text" name="name">
                     <div class="error">
                         {{-- <ul>
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="email">住所</label>
+                    <label for="email">メールアドレス</label>
                     <input type="text" name="email">
                     <div class="error">
                         {{-- <ul>
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password">建物名</label>
+                    <label for="password">パスワード</label>
                     <input type="password" name="password">
                     <div class="error">
                         {{-- <ul>
@@ -37,9 +37,21 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button>更新する</button>
+                    <label for="password_confirmation">確認用パスワード</label>
+                    <input type="password" name="password_confirmation">
+                    <div class="error">
+                        {{-- <ul>
+                        <li>エラー</li>
+                    </ul> --}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button>登録する</button>
                 </div>
             </form>
+            <div class="link">
+                <a href="/login">ログインはこちら</a>
+            </div>
         </div>
     </div>
 @endsection

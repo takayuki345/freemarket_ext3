@@ -14,42 +14,34 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/register', function () {
-    return view('register');
-});
-
-Route::get('/login', function () {
-    return view('login');
-});
-
-// Route::get('/mypage/profile', function () {
-Route::get('/profile', function () {
-    return view('edit-profile');
-});
-
-Route::get('/address', function () {
-    return view('edit-address');
+    return redirect('index');
 });
 
 Route::get('/index', function () {
     return view('index');
 });
 
-Route::get('/index2', function () {
-    return view('index2');
+Route::get('/mypage', function () {
+    return view('mypage');
 });
 
-Route::get('/detail', function () {
-    return view('detail');
-});
-
-Route::get('/purchase', function () {
-    return view('purchase');
+Route::get('/mypage/profile', function () {
+    return view('edit-profile');
 });
 
 Route::get('/sell', function () {
     return view('sell');
 });
+
+Route::get('/item/{item_id}', function () {
+    return view('detail');
+});
+
+Route::get('/purchase/{item_id}', function () {
+    return view('purchase');
+});
+
+Route::get('/purchase/address/{item_id}', function () {
+    return view('edit-address');
+});
+

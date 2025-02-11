@@ -1,15 +1,10 @@
 .index__wrapper {
     margin-top: 50px;
-    /* margin: 50px auto 0;
-    text-align: center;
-    width: 50%;
-    max-width: 700px; */
     font-size: 18px;
     font-weight: bold;
 }
 
 .index__menus {
-    /* margin-left: 100px; */
     border-bottom: 2px solid black;
     padding-bottom: 10px;
 }
@@ -42,7 +37,6 @@
 }
 
 .index__lists-inner a {
-    /* font-size: 20px; */
     text-decoration: none;
     display: block;
     width: 280px;

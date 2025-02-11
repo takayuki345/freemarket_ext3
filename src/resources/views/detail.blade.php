@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="css/detail.css">
+<link rel="stylesheet" href="{{ asset('css/detail.css') }}">
 @endsection
 
 @section('content')
@@ -26,7 +26,7 @@
                     <div class="counter-value">1</div>
                 </div>
             </div>
-            <div class="purchase"><a href="">購入手続きへ</a></div>
+            <div class="purchase"><a href="/purchase/1">購入手続きへ</a></div>
             <h3 class="item-subtitle">商品説明</h3>
             <pre class="item-description">カラー：グレー
                 新品
