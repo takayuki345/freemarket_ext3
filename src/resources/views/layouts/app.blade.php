@@ -23,8 +23,16 @@
                 </form>
                 <nav class="header__nav">
                     <ul>
+                        @if (Auth::check())
+                        <li class="header__nav__logout">
+                            <form action="/logout" method="post">
+                                @csrf
+                                <button type="submit">ログアウト</button>
+                            </form>
+                        </li>
+                        @else
                         <li class="header__nav__login"><a href="/login">ログイン</a></li>
-                        {{-- <li class="header__nav__logout"><a href="">ログアウト</a></li> --}}
+                        @endif
                         <li class="header__nav__mypage"><a href="/mypage">マイページ</a></li>
                         <li class="header__nav__sell"><a href="/sell">出品</a></li>
                     </ul>

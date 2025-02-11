@@ -21,27 +21,32 @@ Route::get('/index', function () {
     return view('index');
 });
 
-Route::get('/mypage', function () {
-    return view('mypage');
-});
-
-Route::get('/mypage/profile', function () {
-    return view('edit-profile');
-});
-
-Route::get('/sell', function () {
-    return view('sell');
-});
-
 Route::get('/item/{item_id}', function () {
     return view('detail');
 });
 
-Route::get('/purchase/{item_id}', function () {
-    return view('purchase');
-});
 
-Route::get('/purchase/address/{item_id}', function () {
-    return view('edit-address');
+Route::middleware('auth')->group( function () {
+
+    Route::get('/mypage', function () {
+        return view('mypage');
+    });
+
+    Route::get('/mypage/profile', function () {
+        return view('edit-profile');
+    });
+
+    Route::get('/sell', function () {
+        return view('sell');
+    });
+
+    Route::get('/purchase/{item_id}', function () {
+        return view('purchase');
+    });
+
+    Route::get('/purchase/address/{item_id}', function () {
+        return view('edit-address');
+    });
+
 });
 
