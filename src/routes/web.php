@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,9 +33,12 @@ Route::middleware('auth')->group( function () {
         return view('mypage');
     });
 
-    Route::get('/mypage/profile', function () {
-        return view('edit-profile');
-    });
+    // Route::get('/mypage/profile', function () {
+    //     return view('edit-profile');
+    // });
+    Route::get('/mypage/profile', [UserController::class, 'edit']);
+
+    Route::post('/mypage/profile', [UserController::class, 'update']);
 
     Route::get('/sell', function () {
         return view('sell');
