@@ -22,7 +22,7 @@ class CreateItemsTable extends Migration
             $table->string('image');
             $table->string('brand');
             $table->integer('price');
-            $table->string('purchaser')->nullable();
+            $table->unsignedBigInteger('purchaser')->nullable();
             $table->string('payment')->nullable();
             $table->string('post_code')->nullable();
             $table->string('address')->nullable();
