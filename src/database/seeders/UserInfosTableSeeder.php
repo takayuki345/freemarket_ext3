@@ -14,13 +14,29 @@ class UserInfosTableSeeder extends Seeder
      */
     public function run()
     {
-        $content = [
-            'user_id' => 1,
-            'image' => '/storage/images/profile001',
-            'post_code' => '0123456',
-            'address' => '東京都港区１－２ー３',
-            'building' => 'コーチテックビルディング１Ｆ',
+        $contents = [
+            [
+                'user_id' => 1,
+                'image' => '/storage/profile_images/car.jpg',
+                'post_code' => '012-3456',
+                'address' => '東京都港区１－２ー３',
+                'building' => 'コーチテック本社１０Ｆ',
+            ],
+            [
+                'user_id' => 2,
+                'image' => '/storage/profile_images/pc.jpg',
+                'post_code' => '123-4567',
+                'address' => '神奈川県横浜市２－３－４',
+                'building' => 'コーチテック横浜支店３Ｆ',
+            ],
+            [
+                'user_id' => 2,
+                'image' => '/storage/profile_images/bell.jpg',
+                'post_code' => '234-5678',
+                'address' => '北海道旭川市３－４－５',
+                'building' => 'コーチテック旭川支店１Ｆ',
+            ]
         ];
-        DB::table('user_infos')->insert($content);
+        DB::table('user_infos')->insert($contents);
     }
 }

@@ -15,7 +15,11 @@
     margin: 12px 5px 12px 20px;
 }
 
-.header__logo>img {
+.header__logo a {
+    display: inline-block;
+}
+
+.header__logo img {
     vertical-align: middle;
 }
 
@@ -88,7 +92,7 @@
         grid-template-rows: repeat(2, 1fr);
     }
 
-    .header__logo>img {
+    .header__logo img {
         max-width: 100%;
     }
 

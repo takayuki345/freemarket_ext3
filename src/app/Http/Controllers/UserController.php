@@ -21,7 +21,7 @@ class UserController extends Controller
     public function update(UserInfoRequest $request)
     {
 
-        $dir = 'image';
+        $dir = 'profile_images';
         $userId = Auth::id();
         User::find($userId)->update([
             'name' => $request->name
@@ -45,8 +45,6 @@ class UserController extends Controller
                 'building' => $request->building
             ]);
         }
-
-
 
         return redirect('/mypage');
     }

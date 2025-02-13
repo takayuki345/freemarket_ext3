@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,10 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('index');
-});
-
-Route::get('/index', function () {
     return view('index');
 });
 
@@ -40,9 +37,9 @@ Route::middleware('auth')->group( function () {
 
     Route::post('/mypage/profile', [UserController::class, 'update']);
 
-    Route::get('/sell', function () {
-        return view('sell');
-    });
+    Route::get('/sell', [ItemController::class, 'create']);
+
+    Route::post('/sell', [ItemController::class, 'store']);
 
     Route::get('/purchase/{item_id}', function () {
         return view('purchase');

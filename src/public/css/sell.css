@@ -3,8 +3,6 @@
     text-align: center;
     width: 50%;
     max-width: 700px;
-    /* font-size: 18px; */
-    /* font-weight: bold; */
 }
 
 .sell__title {
@@ -31,6 +29,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.image-select__container img{
+    height: 100%;
 }
 
 .form-group-image .image-title {
@@ -82,6 +84,7 @@
     display: inline-block;
     margin-bottom: 15px;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .category__container>input:checked+label {
@@ -142,6 +145,7 @@
 
 .form-group>textarea {
     resize: none;
+    font-size: 1rem;
 }
 
 .form-group>button {
@@ -151,6 +155,15 @@
     background-color: rgba(255, 85, 85, 1);
     color: white;
     cursor: pointer;
+}
+
+.error {
+    margin-top: 10px;
+    color: red;
+}
+
+.error>ul {
+    list-style-type: none;
 }
 
 @media(max-width:1000px) {
