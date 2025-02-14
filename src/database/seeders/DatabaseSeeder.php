@@ -18,8 +18,11 @@ class DatabaseSeeder extends Seeder
             UserInfosTableSeeder::class,
             ConditionTableSeeder::class,
             CategoryTableSeeder::class,
+            PaymentTableSeeder::class,
             ItemTableSeeder::class,
-            CategoryItemTableSeeder::class
+            CategoryItemTableSeeder::class,
+            CommentTableSeeder::class,
+            LikeTableSeeder::class,
         ]);
     }
 }

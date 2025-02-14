@@ -23,7 +23,7 @@ class CreateItemsTable extends Migration
             $table->string('brand');
             $table->integer('price');
             $table->unsignedBigInteger('purchaser')->nullable();
-            $table->string('payment')->nullable();
+            $table->foreignId('payment_id')->nullable()->constrained();
             $table->string('post_code')->nullable();
             $table->string('address')->nullable();
             $table->string('building')->nullable();

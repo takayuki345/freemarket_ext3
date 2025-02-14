@@ -16,20 +16,22 @@ class ItemTableSeeder extends Seeder
     {
         $contents = [
             [
+                'id' => 1,
                 'user_id' => 1,
                 'condition_id' => 1,
                 'name' => 'ハードディスク・ドライブ',
-                'description' => '容量：２ＧＢ',
+                'description' => '容量：１ＴＢ',
                 'image' => 'storage/item_images/HDD.jpg',
                 'brand' => 'IO-DATA',
                 'price' => 9980,
                 'purchaser' => null,
-                'payment' => null,
+                'payment_id' => null,
                 'post_code' => null,
                 'address' => null,
                 'building' => null
             ],
             [
+                'id' => 2,
                 'user_id' => 1,
                 'condition_id' => 2,
                 'name' => 'コーヒーミル',
@@ -38,12 +40,13 @@ class ItemTableSeeder extends Seeder
                 'brand' => 'no brand',
                 'price' => 12800,
                 'purchaser' => 2,
-                'payment' => 'コンビニ払い',
+                'payment_id' => 1,
                 'post_code' => '123-4567',
                 'address' => '神奈川県横浜市２－３－４',
                 'building' => 'コーチテック横浜支店３Ｆ'
             ],
             [
+                'id' => 3,
                 'user_id' => 2,
                 'condition_id' => 3,
                 'name' => 'ショルダーバッグ',
@@ -52,12 +55,13 @@ class ItemTableSeeder extends Seeder
                 'brand' => 'ルイ・ヴィトン',
                 'price' => 35000,
                 'purchaser' => null,
-                'payment' => null,
+                'payment_id' => null,
                 'post_code' => null,
                 'address' => null,
                 'building' => null
             ],
             [
+                'id' => 4,
                 'user_id' => 2,
                 'condition_id' => 4,
                 'name' => 'タンブラー',
@@ -66,26 +70,28 @@ class ItemTableSeeder extends Seeder
                 'brand' => 'ノーブランド',
                 'price' => 2000,
                 'purchaser' => null,
-                'payment' => null,
+                'payment_id' => null,
                 'post_code' => null,
                 'address' => null,
                 'building' => null
             ],
             [
+                'id' => 5,
                 'user_id' => 2,
                 'condition_id' => 1,
                 'name' => 'ノートパソコン',
                 'description' => '持ち運びに便利な「モバイルサイズ」です',
                 'image' => 'storage/item_images/ノートPC.jpg',
-                'brand' => 'ＮＥＣ',
+                'brand' => 'ノーブランド',
                 'price' => 51200,
                 'purchaser' => null,
-                'payment' => null,
+                'payment_id' => null,
                 'post_code' => null,
                 'address' => null,
                 'building' => null
             ],
             [
+                'id' => 6,
                 'user_id' => '2',
                 'condition_id' => '2',
                 'name' => 'マイク',
@@ -94,12 +100,13 @@ class ItemTableSeeder extends Seeder
                 'brand' => '',
                 'price' => 23800,
                 'purchaser' => 3,
-                'payment' => 'コンビニ払い',
+                'payment_id' => 2,
                 'post_code' => '234-5678',
                 'address' => '北海道旭川市３－４－５',
                 'building' => 'コーチテック旭川支店１Ｆ'
             ],
             [
+                'id' => 7,
                 'user_id' => 2,
                 'condition_id' => 3,
                 'name' => 'メイクセット',
@@ -108,12 +115,13 @@ class ItemTableSeeder extends Seeder
                 'brand' => '',
                 'price' => 5000,
                 'purchaser' => null,
-                'payment' => null,
+                'payment_id' => null,
                 'post_code' => null,
                 'address' => null,
                 'building' => null
             ],
             [
+                'id' => 8,
                 'user_id' => 3,
                 'condition_id' => 4,
                 'name' => '革靴',
@@ -122,12 +130,13 @@ class ItemTableSeeder extends Seeder
                 'brand' => 'Edward Green',
                 'price' => 7000,
                 'purchaser' => null,
-                'payment' => null,
+                'payment_id' => null,
                 'post_code' => null,
                 'address' => null,
                 'building' => null
             ],
             [
+                'id' => 9,
                 'user_id' => 3,
                 'condition_id' => 1,
                 'name' => '玉ねぎ ３束',
@@ -136,12 +145,13 @@ class ItemTableSeeder extends Seeder
                 'brand' => '自家栽培',
                 'price' => 850,
                 'purchaser' => null,
-                'payment' => null,
+                'payment_id' => null,
                 'post_code' => null,
                 'address' => null,
                 'building' => null
             ],
             [
+                'id' => 10,
                 'user_id' => 3,
                 'condition_id' => 2,
                 'name' => '腕時計',
@@ -150,7 +160,7 @@ class ItemTableSeeder extends Seeder
                 'brand' => 'emporio armani',
                 'price' => 12000,
                 'purchaser' => 1,
-                'payment' => 'カード支払い',
+                'payment_id' => 1,
                 'post_code' => '567-8901',
                 'address' => '沖縄県那覇市５－６－７',
                 'building' => 'コーチテックマンション２０５'

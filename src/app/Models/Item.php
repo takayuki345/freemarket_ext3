@@ -18,7 +18,7 @@ class Item extends Model
         'brand',
         'price',
         'purchaser',
-        'payment',
+        'payment_id',
         'post_code',
         'address',
         'building'
@@ -37,5 +37,20 @@ class Item extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function payment()
+    {
+        return $this->belongsTo(Item::Payment);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
     }
 }

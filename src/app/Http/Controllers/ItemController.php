@@ -40,4 +40,9 @@ class ItemController extends Controller
 
         return redirect('/mypage');
     }
+
+    public function index()
+    {
+        
+    }
 }
