@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ItemRequest;
 use App\Models\Category;
+use App\Models\Like;
 use App\Models\Condition;
 use App\Models\Item;
 use Illuminate\Http\Request;
@@ -41,8 +42,35 @@ class ItemController extends Controller
         return redirect('/mypage');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        
+
+        $page = null;
+        $userId = null;
+
+        if (Auth::check()) {
+            $userId = Auth::id();
+        }
+
+        $query = Item::query();
+
+        if ($request->page == 'mylist') {
+
+            $page = 'mylist';
+
+            $query->whereIn('id', Like::select('item_id')->where('user_id', $userId));
+
+        } else {
+
+            if ($userId != null) {
+
+                $query->where('user_id', '!=', Auth::id());
+            }
+
+        }
+
+        $items = $query->get();
+
+        return view('index', compact('page', 'items'));
     }
 }

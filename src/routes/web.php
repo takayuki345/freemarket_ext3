@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [ItemController::class, 'index']);
 
 Route::get('/item/{item_id}', function () {
     return view('detail');
