@@ -73,4 +73,32 @@ class ItemController extends Controller
 
         return view('index', compact('page', 'items'));
     }
+
+    public function show($item_id)
+    {
+        $userId = Auth::id();
+
+        $item = Item::find($item_id);
+        $categories = Item::find($item_id)->categories()->get();
+        $condition = Item::find($item_id)->condition()->first();
+        $comments = Item::find($item_id)->comments()->get();
+        $liked = Like::where('item_id', $item_id)->where('user_id', $userId)->exists();
+        $likedCount = Like::where('item_id', $item_id)->count();
+
+        return view('detail', compact('item', 'categories', 'condition', 'comments', 'liked', 'likedCount'));
+    }
+
+    public function like($item_id)
+    {
+        $userId = Auth::id();
+        $liked = Like::where('item_id', $item_id)->where('user_id', $userId)->exists();
+
+        if($liked) {
+            Item::find($item_id)->likes()->detach($userId);
+        } else {
+            Item::find($item_id)->likes()->attach($userId);
+        }
+
+        return redirect('/item/' . $item_id);
+    }
 }

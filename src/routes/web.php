@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
@@ -17,10 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ItemController::class, 'index']);
 
-Route::get('/item/{item_id}', function () {
-    return view('detail');
-});
-
+Route::get('/item/{item_id}', [ItemController::class, 'show']);
 
 Route::middleware('auth')->group( function () {
 
@@ -28,13 +26,13 @@ Route::middleware('auth')->group( function () {
         return view('mypage');
     });
 
-    // Route::get('/mypage/profile', function () {
-    //     return view('edit-profile');
-    // });
     Route::get('/mypage/profile', [UserController::class, 'edit']);
 
     Route::post('/mypage/profile', [UserController::class, 'update']);
 
+    Route::get('/item/{item_id}/like', [ItemController::class, 'like']);
+
+    Route::post('/item/comment', [CommentController::class, 'store']);
     Route::get('/sell', [ItemController::class, 'create']);
 
     Route::post('/sell', [ItemController::class, 'store']);

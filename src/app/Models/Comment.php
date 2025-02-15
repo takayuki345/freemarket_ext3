@@ -10,7 +10,13 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'commentator',
+        'comment_user_id',
+        'item_id',
         'content'
     ];
+
+    public function commentUser()
+    {
+        return $this->belongsTo(User::class, 'comment_user_id');
+    }
 }

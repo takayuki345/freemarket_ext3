@@ -1,65 +1,79 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/detail.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
 @endsection
 
 @section('content')
-<div class="detail__wrapper">
-    <div class="left-container">
-        <div class="item-image">
-            <img src="{{ asset('img/腕時計.jpg') }}" alt="">
+    <div class="detail__wrapper">
+        <div class="left-container">
+            <div class="item-image">
+                <img src="{{ asset($item->image) }}" alt="">
+            </div>
+        </div>
+        <div class="right-container">
+            <div class="right-container__inner">
+                <h2 class="item-title">{{ $item->name }}</h2>
+                <div class="item-brand">{{ $item->brand }}</div>
+                <div class="item-price">￥<span>{{ $item->price }}</span>(税込)</div>
+                <div class="counters">
+                    <div class="counter">
+                        <div class="counter-icon">
+                            <a href="/item/{{$item->id}}/like">
+                                <img @if($liked) class="liked" @endif src="{{ asset('../img/星アイコン.svg') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="counter-value">{{ $likedCount }}</div>
+                    </div>
+                    <div class="counter">
+                        <div class="counter-icon"><img src="{{ asset('../img/ふきだしアイコン.svg') }}" alt=""></div>
+                        <div class="counter-value">{{ $comments->count() }}</div>
+                    </div>
+                </div>
+                <div class="purchase"><a href="/purchase/{{ $item->id }}">購入手続きへ</a></div>
+                <h3 class="item-subtitle">商品説明</h3>
+                <pre class="item-description">{{ $item->description }}</pre>
+                <h3 class="item-subtitle">商品の情報</h3>
+                <table class="item-info">
+                    <tr>
+                        <th>カテゴリー</th>
+                        <td>
+                            @foreach ($categories as $category)
+                                <span>{{ $category->name }}</span>
+                            @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>商品の状態</th>
+                        <td>{{ $condition->name }}</td>
+                    </tr>
+                </table>
+                <h3 class="item-subtitle">コメント({{ $comments->count() }})</h3>
+                <div class="comment-set">
+                    @foreach ($comments as $comment)
+                        <div class="user-info">
+                            {{-- {{dd($comment->commentUser()->first()->userInfo()->first()->image)}} --}}
+                            <div class="user-image"><img src="{{ asset('') }}" alt=""></div>
+                            <span class="user-name">{{ $comment->commentUser()->first()->name }}</span>
+                        </div>
+                        <pre class="user-comment">{{ $comment->content }}</pre>
+                    @endforeach
+                </div>
+                <h4 class="item-subtitle2">商品へのコメント</h4>
+                <form class="post-comment" action="/item/comment" method="post">
+                    @csrf
+                    <input type="hidden" name="item_id" value="{{ $item->id }}">
+                    <textarea name="content" id="" cols="30" rows="10"></textarea>
+                    @error('content')
+                    <div class="error">
+                        <ul>
+                            <li>{{ $message }}</li>
+                        </ul>
+                    </div>
+                    @enderror
+                    <button type="submit">コメントを送信する</button>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="right-container">
-        <div class="right-container__inner">
-            <h2 class="item-title">腕時計</h2>
-            <div class="item-brand">ブランド名</div>
-            <div class="item-price">￥<span>47,000</span>(税込)</div>
-            <div class="counters">
-                <div class="counter">
-                    <div class="counter-icon"><img src="../img/星アイコン.svg" alt=""></div>
-                    <div class="counter-value">3</div>
-                </div>
-                <div class="counter">
-                    <div class="counter-icon"><img src="../img/ふきだしアイコン.svg" alt=""></div>
-                    <div class="counter-value">1</div>
-                </div>
-            </div>
-            <div class="purchase"><a href="/purchase/1">購入手続きへ</a></div>
-            <h3 class="item-subtitle">商品説明</h3>
-            <pre class="item-description">カラー：グレー
-                新品
-                商品の状態は良好です。傷もありません。
-
-                購入後、即発送いたします。
-            </pre>
-            <h3 class="item-subtitle">商品の情報</h3>
-            <table class="item-info">
-                <tr>
-                    <th>カテゴリー</th>
-                    <td><span>洋服</span><span>メンズ</span><span>メンズ</span><span>メンズ</span><span>メンズ</span><span>メンズ</span><span>メンズ</span><span>メンズ</span><span>メンズ</span><span>メンズ</span><span>メンズ</span><span>メンズ</span><span>メンズ</span><span>メンズ</span><span>メンズ</span><span>メンズ</span><span>メンズ</span><span>メンズ</span></td>
-                </tr>
-                <tr>
-                    <th>商品の状態</th>
-                    <td>良好</td>
-                </tr>
-            </table>
-            <h3 class="item-subtitle">コメント(1)</h3>
-            <div class="comment-set">
-                <div class="user-info">
-                    <div class="user-image"><img src="{{ asset('../img/logo.svg') }}" alt=""></div>
-                    <span class="user-name">admin</span>
-                </div>
-                <pre class="user-comment">こちらにコメントが入ります。</pre>
-            </div>
-            <h4 class="item-subtitle2">商品へのコメント</h4>
-            <form class="post-comment" action="">
-                <input type="hidden" name="item-id">
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-                <button type="submit">コメントを送信する</button>
-            </form>
-        </div>
-    </div>
-</div>
 @endsection

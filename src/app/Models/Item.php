@@ -49,8 +49,13 @@ class Item extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function users()
+    public function likes()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsToMany(User::class, 'likes');
+    }
+
+    public function purchaseUser()
+    {
+        return $this->belongsTo(User::class, 'purchase_user_id');
     }
 }
