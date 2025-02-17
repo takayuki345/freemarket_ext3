@@ -9,6 +9,11 @@
         <div class="left-container">
             <div class="item-image">
                 <img src="{{ asset($item->image) }}" alt="">
+                @if (!is_null($item->purchase_user_id))
+                <div class="item-image-sold">
+                    <p>Sold</p>
+                </div>
+                @endif
             </div>
         </div>
         <div class="right-container">
@@ -19,8 +24,9 @@
                 <div class="counters">
                     <div class="counter">
                         <div class="counter-icon">
-                            <a href="/item/{{$item->id}}/like">
-                                <img @if($liked) class="liked" @endif src="{{ asset('../img/星アイコン.svg') }}" alt="">
+                            <a href="/item/{{ $item->id }}/like">
+                                <img @if ($liked) class="liked" @endif
+                                    src="{{ asset('../img/星アイコン.svg') }}" alt="">
                             </a>
                         </div>
                         <div class="counter-value">{{ $likedCount }}</div>
@@ -52,9 +58,8 @@
                 <div class="comment-set">
                     @foreach ($comments as $comment)
                         <div class="user-info">
-                            {{-- {{dd($comment->commentUser()->first()->userInfo()->first()->image)}} --}}
-                            <div class="user-image"><img src="{{ asset('') }}" alt=""></div>
-                            <span class="user-name">{{ $comment->commentUser()->first()->name }}</span>
+                            <div class="user-image"><img src="{{ asset($comment->commentUser->userInfo->image) }}" alt=""></div>
+                            <span class="user-name">{{ $comment->commentUser->name }}</span>
                         </div>
                         <pre class="user-comment">{{ $comment->content }}</pre>
                     @endforeach
@@ -65,15 +70,20 @@
                     <input type="hidden" name="item_id" value="{{ $item->id }}">
                     <textarea name="content" id="" cols="30" rows="10"></textarea>
                     @error('content')
-                    <div class="error">
-                        <ul>
-                            <li>{{ $message }}</li>
-                        </ul>
-                    </div>
+                        <div class="error">
+                            <ul>
+                                <li>{{ $message }}</li>
+                            </ul>
+                        </div>
                     @enderror
                     <button type="submit">コメントを送信する</button>
                 </form>
             </div>
         </div>
     </div>
+    <script>
+        window.onload = function() {
+            sessionStorage.removeItem('payment_id');
+        }
+    </script>
 @endsection

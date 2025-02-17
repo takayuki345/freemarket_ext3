@@ -22,9 +22,7 @@ Route::get('/item/{item_id}', [ItemController::class, 'show']);
 
 Route::middleware('auth')->group( function () {
 
-    Route::get('/mypage', function () {
-        return view('mypage');
-    });
+    Route::get('/mypage', [ItemController::class, 'mypage']);
 
     Route::get('/mypage/profile', [UserController::class, 'edit']);
 
@@ -37,13 +35,13 @@ Route::middleware('auth')->group( function () {
 
     Route::post('/sell', [ItemController::class, 'store']);
 
-    Route::get('/purchase/{item_id}', function () {
-        return view('purchase');
-    });
+    Route::get('/purchase/{item_id}', [ItemController::class, 'prePurchase']);
 
-    Route::get('/purchase/address/{item_id}', function () {
-        return view('edit-address');
-    });
+    Route::post('/purchase/{item_id}', [ItemController::class, 'purchase']);
+
+    Route::get('/purchase/address/{item_id}', [ItemController::class, 'tempEdit']);
+
+    Route::post('/purchase/address/{item_id}', [ItemController::class, 'tempUpdate']);
 
 });
 

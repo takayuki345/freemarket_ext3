@@ -22,6 +22,28 @@
     height: 170px;
     background-color: gray;
     margin-right: 50px;
+    position: relative;
+}
+
+.item-image>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item-image-sold {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    font-size: 30px;
+    letter-spacing: 3px;
+    -webkit-text-stroke: 1px white;
 }
 
 .item-title {
@@ -74,7 +96,6 @@
 .delivery-place {
     margin-left: 80px;
     padding-bottom: 50px;
-    /* border-bottom: 1px solid black; */
 }
 
 .delivery-place>div {
@@ -83,16 +104,21 @@
 }
 
 .delivery-place>div:not(:last-of-type) {
-    /* background-color: red; */
     margin-bottom: 15px;
 }
 
 .delivery-change {
     font-size: 22px;
-    text-decoration: none;
     position: absolute;
+    text-decoration: none;
     top: 0px;
     right: 30px;
+    /* background-color: transparent;
+    border: none;
+    padding: 0;
+    line-height: 1;
+    cursor: pointer;
+    color: blue; */
 }
 
 .right-container {
@@ -115,12 +141,11 @@
 .payment-summary td {
     text-align: center;
     font-size: 22px;
-    /* font-weight: bold; */
     line-height: 110px;
 }
 
-.purchase-form {
-
+.payment-summary tr:first-of-type td:first-of-type {
+    width: 50%;
 }
 
 .purchase-form>button {
@@ -133,6 +158,15 @@
     cursor: pointer;
 }
 
+.error {
+    margin-left: 80px;
+    margin-top: 10px;
+    color: red;
+}
+
+.error>ul {
+    list-style-type: none;
+}
 
 @media(max-width:1000px) {
     .purchase__wrapper {

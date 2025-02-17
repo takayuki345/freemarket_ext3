@@ -41,7 +41,7 @@ class Item extends Model
 
     public function payment()
     {
-        return $this->belongsTo(Item::Payment);
+        return $this->belongsTo(Payment::class);
     }
 
     public function comments()

@@ -18,7 +18,14 @@
             <ul class="index__lists-inner">
                 @foreach ($items as $item)
                     <li class="index__list">
-                        <a href="/item/{{ $item->id }}"><img src="{{ asset($item->image) }}" alt=""></a>
+                        <a href="/item/{{ $item->id }}">
+                            <img src="{{ asset($item->image) }}" alt="">
+                            @if(!is_null($item->purchase_user_id))
+                            <div class="index__list-sold">
+                                <p>Sold</p>
+                            </div>
+                            @endif
+                        </a>
                         <span>{{ $item->name }}</span>
                     </li>
                 @endforeach

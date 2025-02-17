@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ItemRequest;
+use App\Http\Requests\PurchaseRequest;
+use App\Http\Requests\AddressRequest;
 use App\Models\Category;
-use App\Models\Like;
 use App\Models\Condition;
 use App\Models\Item;
+use App\Models\Like;
+use App\Models\Payment;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\support\Facades\Auth;
 
@@ -77,14 +81,15 @@ class ItemController extends Controller
     public function show($item_id)
     {
         $userId = Auth::id();
-
+        
         $item = Item::find($item_id);
-        $categories = Item::find($item_id)->categories()->get();
-        $condition = Item::find($item_id)->condition()->first();
-        $comments = Item::find($item_id)->comments()->get();
+        $categories = Item::find($item_id)->categories;
+        $condition = Item::find($item_id)->condition;
+        $comments = Item::find($item_id)->comments;
         $liked = Like::where('item_id', $item_id)->where('user_id', $userId)->exists();
         $likedCount = Like::where('item_id', $item_id)->count();
-
+        session()->forget(['post_code', 'address', 'building']);
+        
         return view('detail', compact('item', 'categories', 'condition', 'comments', 'liked', 'likedCount'));
     }
 
@@ -100,5 +105,93 @@ class ItemController extends Controller
         }
 
         return redirect('/item/' . $item_id);
+    }
+
+    public function prePurchase($item_id)
+    {
+        $userId = Auth::id();
+        $userInfo = User::find($userId)->userInfo;
+
+        $item = Item::find($item_id);
+
+        // if (!is_null($item->purchase_user_id)) {
+        //     return redirect('/item/' . $item->id);
+        // }
+
+        $payments = Payment::all();
+
+        // dd(session()->all());
+
+        // $deliveryPlace = [
+        $purchaseInfo = [
+            'post_code' => session('post_code', $userInfo->post_code),
+            'address' => session('address', $userInfo->address),
+            'building' => session('building', $userInfo->building)
+        ];
+
+        // dd($deliveryPlace);
+
+        return view('pre-purchase', compact('item', 'payments', 'purchaseInfo'));
+    }
+
+    public function tempEdit($item_id)
+    {
+        $userId = Auth::id();
+        $userInfo = User::find($userId)->userInfo;
+
+        $purchaseInfo = [
+            'payment_id' => session('payment_id', null),
+            'post_code' => session('post_code', $userInfo->post_code),
+            'address' => session('address', $userInfo->address),
+            'building' => session('building', $userInfo->building)
+        ];
+
+        return view('edit-address', compact('purchaseInfo', 'item_id'));
+    }
+
+    public function tempUpdate($item_id, AddressRequest $request)
+    {
+        // dd($request->all());
+
+        session([
+            'post_code' => $request->post_code,
+            'address' => $request->address,
+            'building' => $request->building
+        ]);
+
+        return redirect('/purchase/' . $item_id);
+    }
+
+    public function mypage(Request $request)
+    {
+        $userId = Auth::id();
+        $page = $request->page;
+        $items = null;
+
+        $user = User::find($userId);
+        $userInfo = User::find($userId)->userInfo;
+
+        if ($page == 'buy') {
+            $items = Item::where('purchase_user_id', $userId)->get();
+        } else {
+            $items = User::find($userId)->items;
+        }
+
+        return view('mypage', compact('user', 'userInfo', 'items', 'page'));
+    }
+
+    public function purchase(PurchaseRequest $request)
+    {
+        $userId = Auth::id();
+        // dd($request->all());
+        $item = Item::find($request->item_id);
+        $item->purchase_user_id = $userId;
+        $item->payment_id = $request->payment_id;
+        $item->post_code = $request->post_code;
+        $item->address = $request->address;
+        $item->building = $request->building;
+        $item->save();
+
+        return redirect('/');
     }
 }

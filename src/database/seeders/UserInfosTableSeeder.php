@@ -30,7 +30,7 @@ class UserInfosTableSeeder extends Seeder
                 'building' => 'コーチテック横浜支店３Ｆ'
             ],
             [
-                'user_id' => 2,
+                'user_id' => 3,
                 'image' => '/storage/profile_images/bell.jpg',
                 'post_code' => '234-5678',
                 'address' => '北海道旭川市３－４－５',

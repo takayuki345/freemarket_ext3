@@ -52,6 +52,15 @@
     cursor: pointer;
 }
 
+.error {
+    margin-top: 10px;
+    color: red;
+}
+
+.error>ul {
+    list-style-type: none;
+}
+
 @media(max-width:1000px) {
     .address__wrapper {
         width: min(500px, 90vw);

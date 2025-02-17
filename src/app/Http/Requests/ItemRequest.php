@@ -30,7 +30,7 @@ class ItemRequest extends FormRequest
             'condition' => 'required',
             'name' => 'required',
             'description' => 'required',
-            'price' => 'required'
+            'price' => 'required',
         ];
     }
 
@@ -42,7 +42,7 @@ class ItemRequest extends FormRequest
             'condition.required' => '状態を選択してください',
             'name.required' => '商品名を入力してください',
             'description.required' => '商品説明を入力してください',
-            'price.required' => '金額を入力してください'
+            'price.required' => '金額を入力してください',
         ];
     }
 }
