@@ -18,6 +18,11 @@
         </div>
         <div class="right-container">
             <div class="right-container__inner">
+                @if(session('message'))
+                <div class="item-message">
+                    <p>{{ session('message') }}</p>
+                </div>
+                @endif
                 <h2 class="item-title">{{ $item->name }}</h2>
                 <div class="item-brand">{{ $item->brand }}</div>
                 <div class="item-price">￥<span>{{ $item->price }}</span>(税込)</div>

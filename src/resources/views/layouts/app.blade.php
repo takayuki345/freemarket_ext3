@@ -19,9 +19,8 @@
                 </a>
             </p>
             @if (Request::is('register') == false and Request::is('login') == false)
-                <form class="header__search" action="">
-                    <input type="text" name="keyword" placeholder="なにをお探しですか？">
-                    {{-- <button>非表示ボタン</button> --}}
+                <form class="header__search" action="/" method="get">
+                    <input type="text" name="keyword" @if(isset($keyword)) value="{{ $keyword }}" @endif id="keyword-search" placeholder="なにをお探しですか？">
                 </form>
                 <nav class="header__nav">
                     <ul>

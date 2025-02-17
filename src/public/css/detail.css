@@ -47,6 +47,16 @@
     margin: 0 auto 0 3%;
 }
 
+.item-message {
+    text-align: center;
+}
+
+.item-message>p {
+    color: red;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
 .item-title {
     font-size: 30px;
     margin-bottom: 10px;

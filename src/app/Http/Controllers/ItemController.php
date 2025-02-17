@@ -48,9 +48,10 @@ class ItemController extends Controller
 
     public function index(Request $request)
     {
-
+        
         $page = null;
         $userId = null;
+        $keyword = $request->keyword;
 
         if (Auth::check()) {
             $userId = Auth::id();
@@ -73,9 +74,15 @@ class ItemController extends Controller
 
         }
 
+
+        if (isset($keyword)) {
+            $query->where('name', 'like', '%' . $keyword . '%');
+        }
+
         $items = $query->get();
 
-        return view('index', compact('page', 'items'));
+
+        return view('index', compact('page', 'items', 'keyword'));
     }
 
     public function show($item_id)
@@ -114,28 +121,29 @@ class ItemController extends Controller
 
         $item = Item::find($item_id);
 
-        // if (!is_null($item->purchase_user_id)) {
-        //     return redirect('/item/' . $item->id);
-        // }
+        if (!is_null($item->purchase_user_id)) {
+            return redirect('/item/' . $item->id)->with('message', '※こちらの商品は販売済です！');
+        }
 
         $payments = Payment::all();
 
-        // dd(session()->all());
-
-        // $deliveryPlace = [
         $purchaseInfo = [
             'post_code' => session('post_code', $userInfo->post_code),
             'address' => session('address', $userInfo->address),
             'building' => session('building', $userInfo->building)
         ];
 
-        // dd($deliveryPlace);
-
         return view('pre-purchase', compact('item', 'payments', 'purchaseInfo'));
     }
 
     public function tempEdit($item_id)
     {
+        $item = Item::find($item_id);
+
+        if (!is_null($item->purchase_user_id)) {
+            return redirect('/item/' . $item->id)->with('message', '※こちらの商品は販売済です！');
+        }
+
         $userId = Auth::id();
         $userInfo = User::find($userId)->userInfo;
 
@@ -151,7 +159,11 @@ class ItemController extends Controller
 
     public function tempUpdate($item_id, AddressRequest $request)
     {
-        // dd($request->all());
+        $item = Item::find($item_id);
+
+        if (!is_null($item->purchase_user_id)) {
+            return redirect('/item/' . $item->id)->with('message', '※こちらの商品は販売済です！');
+        }
 
         session([
             'post_code' => $request->post_code,
@@ -183,8 +195,12 @@ class ItemController extends Controller
     public function purchase(PurchaseRequest $request)
     {
         $userId = Auth::id();
-        // dd($request->all());
         $item = Item::find($request->item_id);
+
+        if (!is_null($item->purchase_user_id)) {
+            return redirect('/item/' . $item->id)->with('message', '※こちらの商品は販売済です！');
+        }
+
         $item->purchase_user_id = $userId;
         $item->payment_id = $request->payment_id;
         $item->post_code = $request->post_code;
