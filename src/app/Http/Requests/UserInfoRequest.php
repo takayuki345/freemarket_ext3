@@ -24,6 +24,7 @@ class UserInfoRequest extends FormRequest
     public function rules()
     {
         return [
+            // 'image' => 'required',
             'name' => 'required',
             'post_code' => 'required',
             'address' => 'required',
@@ -34,6 +35,7 @@ class UserInfoRequest extends FormRequest
     public function messages()
     {
         return [
+            // 'image.required' => '画像を選択して下さい',
             'name.required' => 'お名前を入力して下さい',
             'post_code.required' => '郵便番号を入力して下さい',
             'address.required' => '住所を入力して下さい',

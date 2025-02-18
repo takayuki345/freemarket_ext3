@@ -32,6 +32,18 @@ class UserTableSeeder extends Seeder
                 'name' => 'test3',
                 'email' => 'test3@test',
                 'password' => \Hash::make('test3test3')
+            ],
+            [
+                'id' => 4,
+                'name' => 'test4',
+                'email' => 'test4@test',
+                'password' => \Hash::make('test4test4')
+            ],
+            [
+                'id' => 5,
+                'name' => 'test5',
+                'email' => 'test5@test',
+                'password' => \Hash::make('test5test5')
             ]
         ];
         DB::table('users')->insert($contents);

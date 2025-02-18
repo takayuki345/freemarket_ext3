@@ -11,56 +11,53 @@
             <form class="profile__form" action="/mypage/profile" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group-image">
-                    <div class="image-container"><img id="image-target" src="{{ asset($userInfo->image) }}" alt=""></div>
+                    <div class="image-container"><img id="image-target" src="{{ asset($userInfo['image']) }}" alt=""></div>
                     <label for="image">画像を選択する</label>
                     <input type="file" name="image" id="image">
                 </div>
+                @error('image')
+                    <ul class="error">
+                        <li>{{ $message }}</li>
+                    </ul>
+                @enderror
                 <div class="form-group">
                     <label for="name">ユーザー名</label>
                     <input type="text" name="name" value="{{ old('name', $user->name) }}">
                     @error('name')
-                        <div class="error">
-                            <ul>
-                                <li>{{ $message }}</li>
-                            </ul>
-                        </div>
+                        <ul class="error">
+                            <li>{{ $message }}</li>
+                        </ul>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="post_code">郵便番号</label>
-                    <input type="text" name="post_code" value="{{ old('post_code', $userInfo->post_code) }}">
+                    <input type="text" name="post_code" value="{{ old('post_code', $userInfo['post_code']) }}">
                     @error('post_code')
-                        <div class="error">
-                            <ul>
-                                <li>{{ $message }}</li>
-                            </ul>
-                        </div>
+                        <ul class="error">
+                            <li>{{ $message }}</li>
+                        </ul>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="address">住所</label>
-                    <input type="text" name="address" value="{{ old('address', $userInfo->address) }}">
+                    <input type="text" name="address" value="{{ old('address', $userInfo['address']) }}">
                     @error('address')
-                        <div class="error">
-                            <ul>
-                                <li>{{ $message }}</li>
-                            </ul>
-                        </div>
+                        <ul class="error">
+                            <li>{{ $message }}</li>
+                        </ul>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="building">建物名</label>
-                    <input type="text" name="building" value="{{ old('building', $userInfo->building) }}">
+                    <input type="text" name="building" value="{{ old('building', $userInfo['building']) }}">
                     @error('building')
-                        <div class="error">
-                            <ul>
-                                <li>{{ $message }}</li>
-                            </ul>
-                        </div>
+                        <ul class="error">
+                            <li>{{ $message }}</li>
+                        </ul>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <button type="submit">更新する</button>
+                    <button type="submit">{{ $button }}</button>
                 </div>
             </form>
         </div>
