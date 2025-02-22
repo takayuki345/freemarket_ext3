@@ -18,6 +18,12 @@ class ItemController extends Controller
 {
     public function create()
     {
+        $userId = Auth::id();
+
+        if (!isset(User::find($userId)->userInfo)) {
+            return redirect('/mypage/profile');
+        }
+
         $categories = Category::all();
         $conditions = Condition::all();
 
@@ -48,7 +54,7 @@ class ItemController extends Controller
 
     public function index(Request $request)
     {
-        
+
         $page = null;
         $userId = null;
         $keyword = $request->keyword;
@@ -117,6 +123,11 @@ class ItemController extends Controller
     public function prePurchase($item_id)
     {
         $userId = Auth::id();
+
+        if (!isset(User::find($userId)->userInfo)) {
+            return redirect('/mypage/profile');
+        }
+
         $userInfo = User::find($userId)->userInfo;
 
         $item = Item::find($item_id);
@@ -177,6 +188,11 @@ class ItemController extends Controller
     public function mypage(Request $request)
     {
         $userId = Auth::id();
+
+        if (!isset(User::find($userId)->userInfo)) {
+            return redirect('/mypage/profile');
+        }
+
         $page = $request->page;
         $items = null;
 

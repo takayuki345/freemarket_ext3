@@ -1,0 +1,18 @@
+.verify__wrapper {
+    margin: 50px auto 0;
+    text-align: center;
+    /* width: 50%; */
+    /* max-width: 700px; */
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.verify__title {
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.verify__wrapper p {
+    font-size: 20px;
+    line-height: 30px;
+}

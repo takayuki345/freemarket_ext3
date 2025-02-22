@@ -18,25 +18,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [ItemController::class, 'index']);
+
+Route::get('/mypage/profile', [UserController::class, 'edit']);
+
+Route::post('/mypage/profile', [UserController::class, 'update']);
+
+Route::get('/item/{item_id}', [ItemController::class, 'show']);
 
 Route::middleware('verified')->group( function () {
 
-    Route::get('/', [ItemController::class, 'index']);
-
-    Route::get('/item/{item_id}', [ItemController::class, 'show']);
-
     Route::middleware('auth')->group( function () {
-    // Route::middleware(['auth', 'verified'])->group( function () {
 
         Route::get('/mypage', [ItemController::class, 'mypage']);
-
-        Route::get('/mypage/profile', [UserController::class, 'edit']);
-
-        Route::post('/mypage/profile', [UserController::class, 'update']);
 
         Route::get('/item/{item_id}/like', [ItemController::class, 'like']);
 
         Route::post('/item/comment', [CommentController::class, 'store']);
+
         Route::get('/sell', [ItemController::class, 'create']);
 
         Route::post('/sell', [ItemController::class, 'store']);

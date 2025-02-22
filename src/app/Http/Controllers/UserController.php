@@ -19,7 +19,7 @@ class UserController extends Controller
 
             $userInfo = User::find($userId)->userInfo;
             $button = '更新する';
-            
+
         } else {
 
             $userInfo = [
