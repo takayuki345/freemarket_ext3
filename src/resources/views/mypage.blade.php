@@ -12,7 +12,6 @@
                     <div class="image"><img src="{{ asset($userInfo->image) }}" alt=""></div>
                     <div class="username">{{ $user->name }}</div>
                 </div>
-                {{-- <button class="mypage__profile-edit">プロフィールを編集</button> --}}
                 <a class="mypage__profile-edit" href="/mypage/profile">プロフィールを編集</a>
             </div>
         </div>

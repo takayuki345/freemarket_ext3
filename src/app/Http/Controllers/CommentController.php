@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\support\Facades\Auth;
 
@@ -12,6 +13,10 @@ class CommentController extends Controller
     public function store(CommentRequest $request)
     {
         $userId = Auth::id();
+
+        if (!isset(User::find($userId)->userInfo)) {
+            return redirect('/mypage/profile');
+        }
 
         $comment = new Comment();
         $comment->comment_user_id = $userId;

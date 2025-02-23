@@ -46,8 +46,3 @@ services:
         ports:
             - "8025:8025"
             - "1025:1025"
-        environment:
-            MH_STORAGE: maildir
-            MH_MAILDIR_PATH: /tmp
-        volumes:
-            - ./docker/mailhog/data:/tmp

@@ -65,6 +65,10 @@
 }
 
 @media(max-width:1000px) {
+    .header__wrapper {
+        grid-template-rows: none;
+    }
+
     .register__wrapper {
         width: min(500px, 90vw);
     }

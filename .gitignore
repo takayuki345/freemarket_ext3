@@ -14,4 +14,3 @@
 /src/.idea
 /src/.vscode
 /docker/mysql/data/*
-/docker/mailhog/data/*
