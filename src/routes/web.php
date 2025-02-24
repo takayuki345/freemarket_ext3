@@ -18,13 +18,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ItemController::class, 'index']);
-
 Route::get('/mypage/profile', [UserController::class, 'edit']);
 
 Route::post('/mypage/profile', [UserController::class, 'update']);
 
+Route::get('/', [ItemController::class, 'index']);
+
 Route::get('/item/{item_id}', [ItemController::class, 'show']);
+
+Route::post('/item/comment', [CommentController::class, 'store']);
 
 Route::middleware('verified')->group( function () {
 
@@ -33,8 +35,6 @@ Route::middleware('verified')->group( function () {
         Route::get('/mypage', [ItemController::class, 'mypage']);
 
         Route::get('/item/{item_id}/like', [ItemController::class, 'like']);
-
-        Route::post('/item/comment', [CommentController::class, 'store']);
 
         Route::get('/sell', [ItemController::class, 'create']);
 

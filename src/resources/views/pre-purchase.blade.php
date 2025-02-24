@@ -20,17 +20,19 @@
                 </div>
                 <div class="">
                     <h2 class="item-title">{{ $item->name }}</h2>
-                    <div class="item-price">￥<span>{{ $item->price }}</span></div>
+                    <div class="item-price">￥<span>{{ number_format($item->price) }}</span></div>
                 </div>
             </div>
             <div class="payment-way">
                 <h3 class="payment-title">支払い方法</h3>
-                <select class="payment-select" name="payment_id" id="payment-select" >
-                    <option hidden value="">選択してください</option>
-                    @foreach ($payments as $payment)
-                        <option value="{{ $payment->id }}">　　{{ $payment->name }}</option>
-                    @endforeach
-                </select>
+                <div class="payment-select-wrapper">
+                    <select class="payment-select" name="payment_id" id="payment-select" >
+                        <option hidden value="">選択してください</option>
+                        @foreach ($payments as $payment)
+                            <option value="{{ $payment->id }}">{{ $payment->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 @error('payment_id')
                 <div class="error">
                     <ul>
@@ -58,11 +60,11 @@
             <table class="payment-summary">
                 <tr>
                     <td>商品代金</td>
-                    <td>￥47,000</td>
+                    <td>￥{{ number_format($item->price) }}</td>
                 </tr>
                 <tr>
                     <td>支払い方法</td>
-                    <td id="payment-way">コンビニ払い</td>
+                    <td id="payment-way"></td>
                 </tr>
             </table>
             <form class="purchase-form" action="/purchase/{{ $item->id }}" method="post">

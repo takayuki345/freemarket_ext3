@@ -124,12 +124,31 @@
 }
 
 
-.form-group>select,
+.form-group select,
 .form-group>input,
 .form-group>button,
 .form-group>textarea {
     padding: 10px 15px;
     border-radius: 5px;
+}
+
+.form-group select {
+    width: 100%;
+    appearance: none;
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper::after {
+    position: absolute;
+    content: "\25bc";
+    line-height: 37.97px;
+    font-size: 20px;
+    top: 0;
+    right: 10px;
+    pointer-events: none;
 }
 
 .form-group>input {

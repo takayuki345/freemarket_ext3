@@ -1,18 +1,11 @@
 .mypage__wrapper {
     margin-top: 50px;
-    /* margin: 50px auto 0;
-    text-align: center;
-    width: 50%;
-    max-width: 700px; */
     font-size: 18px;
     font-weight: bold;
 }
 
 .mypage__profile-inner {
     margin: 0 150px 50px 200px;
-    /* margin-left: 200px;
-    margin-right: 150px;
-    margin-bottom: 50px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -27,8 +20,6 @@
     width: 120px;
     height: 120px;
     margin-right: 70px;
-    /* background-color: gray; */
-    /* border-radius: 50%; */
 }
 
 .mypage__profile-summary img {
@@ -133,5 +124,16 @@
 @media(max-width:1000px) {
     .mypage__wrapper {
         /* width: min(500px, 90vw); */
+    }
+}
+
+@media(max-width:900px) {
+    .mypage__profile-inner {
+        margin: 0 50px 50px;
+        justify-content: space-around;
+    }
+
+    .mypage__profile-summary>.image {
+        margin-right: 0;
     }
 }

@@ -1,5 +1,5 @@
 .verify__wrapper {
-    margin: 50px auto 0;
+    margin: 180px auto 0;
     text-align: center;
     /* width: 50%; */
     /* max-width: 700px; */
@@ -7,12 +7,27 @@
     font-weight: bold;
 }
 
-.verify__title {
-    font-size: 30px;
-    margin-bottom: 50px;
+.verify__wrapper p {
+    font-size: 22px;
+    line-height: 30px;
 }
 
-.verify__wrapper p {
-    font-size: 20px;
-    line-height: 30px;
+.to_verify {
+    font-size: 22px;
+    font-weight: bold;
+    padding: 13px 25px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 35px;
+    cursor: pointer;
+}
+
+.re_mail {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: rgba(0, 115, 204, 1);
+    margin-top: 35px;
 }

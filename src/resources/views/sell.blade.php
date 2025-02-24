@@ -44,14 +44,15 @@
                 </div>
                 <div class="form-group">
                     <h4>商品の状態</h4>
-                    {{-- <input type="password" name="password"> --}}
-                    <select name="condition">
-                        <option value="" hidden>選択してください</option>
-                        @foreach ($conditions as $condition)
-                            <option value="{{ $condition->id }}" @if ($condition->id == old('condition')) selected @endif>
-                                {{ $condition->name }}</option>
-                        @endforeach
-                    </select>
+                    <div class="select-wrapper">
+                        <select name="condition">
+                            <option value="" hidden>選択してください</option>
+                            @foreach ($conditions as $condition)
+                                <option value="{{ $condition->id }}" @if ($condition->id == old('condition')) selected @endif>
+                                    {{ $condition->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     @error('condition')
                         <div class="error">
                             <ul>

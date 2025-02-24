@@ -69,11 +69,28 @@
     margin: 30px auto 30px 30px;
 }
 
+.payment-select-wrapper {
+    position: relative;
+    margin-left: 80px;
+    width: 200px;
+}
+
+.payment-select-wrapper::after {
+    position: absolute;
+    content: "\25bc";
+    top: 0;
+    right: 10px;
+    font-size: 20px;
+    line-height: 31.25px;
+    pointer-events: none;
+}
+
 .payment-select {
     padding: 5px;
     font-size: 1rem;
-    width: 200px;
-    margin-left: 80px;
+    width: 100%;
+    border-radius: 5px;
+    appearance: none;
 }
 
 .payment-select>option {
@@ -113,12 +130,6 @@
     text-decoration: none;
     top: 0px;
     right: 30px;
-    /* background-color: transparent;
-    border: none;
-    padding: 0;
-    line-height: 1;
-    cursor: pointer;
-    color: blue; */
 }
 
 .right-container {

@@ -102,9 +102,9 @@
     object-fit: contain;
 }
 
-.counter-icon img.liked {
+/* .counter-icon img.liked {
     background-color: orange;
-}
+} */
 
 .counter-value {
     text-align: center;

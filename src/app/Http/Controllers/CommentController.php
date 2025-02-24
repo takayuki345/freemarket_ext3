@@ -12,6 +12,10 @@ class CommentController extends Controller
 {
     public function store(CommentRequest $request)
     {
+        if(!Auth::check()) {
+            return back()->with('message2', 'ログイン時のみ、コメントを送信できます');
+        }
+
         $userId = Auth::id();
 
         if (!isset(User::find($userId)->userInfo)) {

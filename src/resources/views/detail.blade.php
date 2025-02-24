@@ -25,13 +25,12 @@
                 @endif
                 <h2 class="item-title">{{ $item->name }}</h2>
                 <div class="item-brand">{{ $item->brand }}</div>
-                <div class="item-price">￥<span>{{ $item->price }}</span>(税込)</div>
+                <div class="item-price">￥<span>{{ number_format($item->price) }}</span>(税込)</div>
                 <div class="counters">
                     <div class="counter">
                         <div class="counter-icon">
                             <a href="/item/{{ $item->id }}/like">
-                                <img @if ($liked) class="liked" @endif
-                                    src="{{ asset('../img/星アイコン.svg') }}" alt="">
+                                <img src="@if($liked) {{ asset('../img/星アイコン2.jpg') }} @else {{ asset('../img/星アイコン.jpg') }} @endif" alt="">
                             </a>
                         </div>
                         <div class="counter-value">{{ $likedCount }}</div>
@@ -81,6 +80,13 @@
                             </ul>
                         </div>
                     @enderror
+                    @if(session('message2'))
+                        <div class="error">
+                            <ul>
+                                <li>{{ session('message2') }}</li>
+                            </ul>
+                        </div>
+                    @endif
                     <button type="submit">コメントを送信する</button>
                 </form>
             </div>

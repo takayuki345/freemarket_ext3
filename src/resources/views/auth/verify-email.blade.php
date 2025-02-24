@@ -6,13 +6,12 @@
 
 @section('content')
     <div class="verify__wrapper">
-        <h2 class="verify__title">メール認証してください！</h2>
+        <p>登録していただいたメールアドレスに認証メールを送付しました。</p>
+        <p>メール認証を完了してください。</p>
+        <button class="to_verify" onclick="location.href='http://localhost:8025/'">認証はこちらから</button>
         <form action="/email/verification-notification" method="post">
             @csrf
-            <p>ご登録メール宛てに、認証用メールをお送りしております。
-                <br>こちらの画面は一旦閉じ、「Verify Email Address」を<br>クリックしてアプリを起動しなおして下さい。<br>
-                <br>尚、ご登録メール宛てに認証用のメールを再送する場合には<br>以下の「再送」ボタンをクリックしてください。</p><br>
-            <button type="submit">再送</button>
+            <button class="re_mail" type="submit">認証メールを再送する</button>
         </form>
     </div>
 @endsection
