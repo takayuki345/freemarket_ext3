@@ -11,7 +11,13 @@
             <form class="profile__form" action="/mypage/profile" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group-image">
-                    <div class="image-container"><img id="image-target" src="{{ asset($userInfo['image']) }}"></div>
+                    <div class="image-container">
+                        @if (isset($userInfo['image']))
+                            <img id="image-target" src="{{ asset($userInfo['image']) }}">
+                        @else
+                            <img id="image-target" src="{{ asset('img/no_image.jpg') }}">
+                        @endif
+                    </div>
                     <label for="image">画像を選択する</label>
                     <input type="file" name="image" id="image">
                 </div>

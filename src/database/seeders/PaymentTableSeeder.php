@@ -17,11 +17,13 @@ class PaymentTableSeeder extends Seeder
         $contents = [
             [
                 'id' => 1,
-                'name' => 'コンビニ払い'
+                'name' => 'コンビニ払い',
+                'method' => 'konbini'
             ],
             [
                 'id' => 2,
-                'name' => 'カード支払い'
+                'name' => 'カード支払い',
+                'method' => 'card'
             ]
         ];
         DB::table('payments')->insert($contents);

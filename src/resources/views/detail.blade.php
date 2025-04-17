@@ -62,7 +62,13 @@
                 <div class="comment-set">
                     @foreach ($comments as $comment)
                         <div class="user-info">
-                            <div class="user-image"><img src="{{ asset($comment->commentUser->userInfo->image) }}" alt=""></div>
+                            <div class="user-image">
+                                @if (isset($comment->commentUser->userInfo->image))
+                                    <img src="{{ asset($comment->commentUser->userInfo->image) }}" alt="">
+                                @else
+                                    <img src="{{ asset('img/no_image.jpg') }}" alt="">
+                                @endif
+                            </div>
                             <span class="user-name">{{ $comment->commentUser->name }}</span>
                         </div>
                         <pre class="user-comment">{{ $comment->content }}</pre>

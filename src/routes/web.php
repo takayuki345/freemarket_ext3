@@ -44,6 +44,8 @@ Route::middleware('verified')->group( function () {
 
         Route::post('/purchase/{item_id}', [ItemController::class, 'purchase']);
 
+        Route::get('/purchase/{item_id}/success', [ItemController::class, 'success']);
+
         Route::get('/purchase/address/{item_id}', [ItemController::class, 'tempEdit']);
 
         Route::post('/purchase/address/{item_id}', [ItemController::class, 'tempUpdate']);

@@ -1,8 +1,8 @@
-/* .header {
-    position: fixed;
+.header {
+    position: sticky;
     top: 0;
-    left: 0;
-} */
+    z-index: 1000;
+}
 
 .header__wrapper {
     display: grid;
@@ -55,7 +55,6 @@
     text-decoration: none;
     color: white;
     display: inline-block;
-    /* padding: 8px 15px; */
 }
 
 .header__nav button {
@@ -63,14 +62,13 @@
     color: white;
     border: none;
     background-color: transparent;
-    line-height: 30px;
+    /* line-height: 30px; */
     cursor: pointer;
 }
 
 .header__nav__login>a,
 .header__nav__mypage>a {
-    line-height: 32px;
-    /* vertical-align: bottom; */
+    /* line-height: 32px; */
 }
 
 .header__nav__sell>a {
@@ -79,10 +77,6 @@
     background-color: white;
     color: black;
     padding: 8px 15px;
-}
-
-.header__nav form {
-    /* height: 100%; */
 }
 
 

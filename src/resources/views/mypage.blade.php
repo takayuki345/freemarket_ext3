@@ -9,7 +9,13 @@
         <div class="mypage__profile">
             <div class="mypage__profile-inner">
                 <div class="mypage__profile-summary">
-                    <div class="image"><img src="{{ asset($userInfo->image) }}" alt=""></div>
+                    <div class="image">
+                        @if (isset($userInfo->image))
+                            <img src="{{ asset($userInfo->image) }}" alt="">
+                        @else
+                            <img src="{{ asset('img/no_image.jpg') }}" alt="">
+                        @endif
+                    </div>
                     <div class="username">{{ $user->name }}</div>
                 </div>
                 <a class="mypage__profile-edit" href="/mypage/profile">プロフィールを編集</a>

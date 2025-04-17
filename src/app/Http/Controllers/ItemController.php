@@ -11,8 +11,10 @@ use App\Models\Item;
 use App\Models\Like;
 use App\Models\Payment;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\support\Facades\Auth;
+use Stripe\StripeClient;
 
 class ItemController extends Controller
 {
@@ -94,7 +96,7 @@ class ItemController extends Controller
     public function show($item_id)
     {
         $userId = Auth::id();
-        
+
         $item = Item::find($item_id);
         $categories = Item::find($item_id)->categories;
         $condition = Item::find($item_id)->condition;
@@ -102,7 +104,7 @@ class ItemController extends Controller
         $liked = Like::where('item_id', $item_id)->where('user_id', $userId)->exists();
         $likedCount = Like::where('item_id', $item_id)->count();
         session()->forget(['post_code', 'address', 'building']);
-        
+
         return view('detail', compact('item', 'categories', 'condition', 'comments', 'liked', 'likedCount'));
     }
 
@@ -210,20 +212,71 @@ class ItemController extends Controller
 
     public function purchase(PurchaseRequest $request)
     {
-        $userId = Auth::id();
-        $item = Item::find($request->item_id);
-
+        $itemId = $request->item_id;
+        $item = Item::find($itemId);
+        
         if (!is_null($item->purchase_user_id)) {
             return redirect('/item/' . $item->id)->with('message', '※こちらの商品は販売済です！');
         }
 
-        $item->purchase_user_id = $userId;
+        $userId = Auth::id();
+        $stripe = new StripeClient(config('stripe.stripe_secret_key'));
+
+        $paymentId = $request->payment_id;
+        $paymentMethod = Payment::find($paymentId)->method;
+        $amount = $item->price;
+        $postCode = $request->post_code;
+        $address = urlencode($request->address);
+        $building = urlencode($request->building);
+
+        $checkoutSession = $stripe->checkout->sessions->create([
+            'payment_method_types' => [$paymentMethod],
+            'payment_method_options' => [
+                'konbini' => ['expires_after_days' => 7,],
+            ],
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => 'jpy',
+                        'product_data' => ['name' => $item->name],
+                        'unit_amount' => $amount,
+                    ],
+                    'quantity' => 1,
+                ],
+            ],
+            'mode' => 'payment',
+            'success_url' => "http://localhost/purchase/{$itemId}/success?user_id={$userId}&amount={$amount}&payment_id={$paymentId}&post_code={$postCode}&address={$address}&building={$building}",
+            ]
+        );
+
+        return redirect($checkoutSession->url);
+
+    }
+
+    public function success($item_id, Request $request)
+    {
+        if(!$request->user_id || !$request->amount || !$request->payment_id || !$request->post_code || !$request->address || !$request->building){
+            throw new Exception("stripe決済想定後処理にて、パラメータ不足のエラー発生！");
+        }
+
+        $stripe = new StripeClient(config('stripe.stripe_secret_key'));
+
+        $stripe->charges->create([
+            'amount' => $request->amount,
+            'currency' => 'jpy',
+            'source' => 'tok_visa',
+        ]);
+
+        $item = Item::find($item_id);
+
+        $item->purchase_user_id = $request->user_id;
         $item->payment_id = $request->payment_id;
         $item->post_code = $request->post_code;
         $item->address = $request->address;
         $item->building = $request->building;
         $item->save();
 
-        return redirect('/');
+        return redirect('/')->with('message', '※商品を購入しました！');;
+
     }
 }

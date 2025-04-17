@@ -14,6 +14,11 @@
                         @if ($page == 'mylist') class="index__menu--red" @endif>マイリスト</a></li>
             </ul>
         </div>
+        @if (session('message'))
+            <div class="index__message">
+                <p>{{ session('message') }}</p>
+            </div>
+        @endif
         <div class="index__lists">
             <ul class="index__lists-inner">
                 @foreach ($items as $item)
