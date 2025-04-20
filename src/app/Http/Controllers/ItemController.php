@@ -190,8 +190,9 @@ class ItemController extends Controller
     public function mypage(Request $request)
     {
         $userId = Auth::id();
+        $userInfo = User::find($userId)->userInfo;
 
-        if (!isset(User::find($userId)->userInfo)) {
+        if (!isset($userInfo)) {
             return redirect('/mypage/profile');
         }
 
@@ -199,7 +200,6 @@ class ItemController extends Controller
         $items = null;
 
         $user = User::find($userId);
-        $userInfo = User::find($userId)->userInfo;
 
         if ($page == 'buy') {
             $items = Item::where('purchase_user_id', $userId)->get();
@@ -214,7 +214,7 @@ class ItemController extends Controller
     {
         $itemId = $request->item_id;
         $item = Item::find($itemId);
-        
+
         if (!is_null($item->purchase_user_id)) {
             return redirect('/item/' . $item->id)->with('message', '※こちらの商品は販売済です！');
         }
@@ -278,5 +278,10 @@ class ItemController extends Controller
 
         return redirect('/')->with('message', '※商品を購入しました！');;
 
+    }
+
+    public function trade()
+    {
+        return view('trade');
     }
 }

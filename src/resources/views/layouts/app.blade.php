@@ -18,7 +18,7 @@
                     <img src="{{ asset('img/logo.svg') }}" alt="logo">
                 </a>
             </p>
-            @if (Request::is('register') == false and Request::is('login') == false)
+            @if (Request::is('register') == false and Request::is('login') == false and Request::is('mypage/trade') == false)
                 <form class="header__search" action="/" method="get">
                     <input type="text" name="keyword" @if(isset($keyword)) value="{{ $keyword }}" @endif id="keyword-search" placeholder="なにをお探しですか？">
                 </form>

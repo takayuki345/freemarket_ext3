@@ -34,6 +34,8 @@ Route::middleware('verified')->group( function () {
 
         Route::get('/mypage', [ItemController::class, 'mypage']);
 
+        Route::get('/mypage/trade', [ItemController::class, 'trade']);
+
         Route::get('/item/{item_id}/like', [ItemController::class, 'like']);
 
         Route::get('/sell', [ItemController::class, 'create']);
