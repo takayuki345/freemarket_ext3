@@ -89,7 +89,9 @@
                 </form>
             </div>
         </div>
-        <div class="modal">
+
+        <!-- モーダル -->
+        <!-- <div class="modal">
             <div class="modal__title">取引が完了しました。</div>
             <div class="modal__contents">
                 <div class="modal__contents-message">今回の取引相手はどうでしたか？</div>
@@ -108,8 +110,11 @@
                     <button>送信する</button>
                 </form>
             </div>
-        </div>
+        </div> -->
     </div>
-    <div class="overlay"></div>
+
+    <!-- オーバレイ -->
+    <!-- <div class="overlay"></div> -->
+
 </div>
 @endsection

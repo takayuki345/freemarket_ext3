@@ -203,11 +203,23 @@ class ItemController extends Controller
 
         if ($page == 'buy') {
             $items = Item::where('purchase_user_id', $userId)->get();
+        } elseif ($page == 'trade') {
+            $items = Item::where(function ($query) use ($userId) {
+                $query->where('user_id', $userId)->orWhere('purchase_user_id', $userId);
+            })->where('message_status', 1)->get();
         } else {
             $items = User::find($userId)->items;
         }
 
-        return view('mypage', compact('user', 'userInfo', 'items', 'page'));
+        if ($user->totalEvaluationCount() == 0) {
+            $evaluation = 0;
+        } else {
+            $evaluation = round($user->totalEvaluation() / $user->totalEvaluationCount());
+        }
+
+        // dd($evaluation);
+
+        return view('mypage', compact('user', 'userInfo', 'items', 'page', 'evaluation'));
     }
 
     public function purchase(PurchaseRequest $request)
@@ -280,8 +292,13 @@ class ItemController extends Controller
 
     }
 
-    public function trade()
+    public function trade($item_id)
     {
+        $item = Item::find($item_id);
+        if ($item->messageCount(Auth::id()) == 0) {
+            return redirect('/mypage?page=trade');
+        }
+
         return view('trade');
     }
 }

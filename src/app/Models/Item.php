@@ -21,7 +21,11 @@ class Item extends Model
         'payment_id',
         'post_code',
         'address',
-        'building'
+        'building',
+        'message_status',
+        'message_updated_at',
+        'user_evaluation',
+        'purchase_user_evaluation',
     ];
 
     public function condition()
@@ -57,5 +61,20 @@ class Item extends Model
     public function purchaseUser()
     {
         return $this->belongsTo(User::class, 'purchase_user_id');
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    public function messageCount($userId)
+    {
+        $count = Message::where('item_id', $this->id)
+            ->where('unchecked', true)
+            ->where('user_id', '!=', $userId)
+            ->count();
+
+        return $count;
     }
 }

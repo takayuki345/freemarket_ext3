@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             CategoryItemTableSeeder::class,
             CommentTableSeeder::class,
             LikeTableSeeder::class,
+            MessageTableSeeder::class,
         ]);
     }
 }

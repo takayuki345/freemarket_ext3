@@ -56,4 +56,48 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Item::class);
     }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    public function totalMessageCount()
+    {
+        $userId = $this->id;
+        $count = Message::where('user_id', '!=', $userId)
+            ->where('unchecked', true)
+            ->whereHas('item', function($query) use ($userId) {
+                $query->where('user_id', $userId)
+                    ->orWhere('purchase_user_id', $userId);
+            })->count();
+
+        return $count;
+    }
+
+    public function totalEvaluationCount()
+    {
+        $userId = $this->id;
+        $userEvaluationCount = Item::where('user_id', $userId)
+            ->whereNotNull('user_evaluation')
+            ->count();
+        $purchaseUserEvaluationCount = Item::where('purchase_user_id', $userId)
+            -> whereNotNull('purchase_user_evaluation')
+            ->count();
+
+        return $userEvaluationCount + $purchaseUserEvaluationCount;
+    }
+
+    public function totalEvaluation()
+    {
+        $userId = $this->id;
+        $totalUserEvaluation = Item::where('user_id', $userId)
+            ->whereNotNull('user_evaluation')
+            ->sum('user_evaluation');
+        $totalPurchaseUserEvaluation = Item::where('purchase_user_id', $userId)
+            ->whereNotNull('purchase_user_evaluation')
+            ->sum('purchase_user_evaluation');
+
+        return $totalUserEvaluation + $totalPurchaseUserEvaluation;
+    }
 }

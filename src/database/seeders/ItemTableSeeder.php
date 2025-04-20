@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -28,7 +29,11 @@ class ItemTableSeeder extends Seeder
                 'payment_id' => null,
                 'post_code' => null,
                 'address' => null,
-                'building' => null
+                'building' => null,
+                'message_status' => 0,
+                'message_updated_at' => null,
+                'user_evaluation' => null,
+                'purchase_user_evaluation' => null,
             ],
             [
                 'id' => 2,
@@ -43,7 +48,11 @@ class ItemTableSeeder extends Seeder
                 'payment_id' => 1,
                 'post_code' => '123-4567',
                 'address' => '神奈川県横浜市２－３－４',
-                'building' => 'コーチテック横浜支店３Ｆ'
+                'building' => 'コーチテック横浜支店３Ｆ',
+                'message_status' => 1,
+                'message_updated_at' => Carbon::now()->subDay(2),
+                'user_evaluation' => null,
+                'purchase_user_evaluation' => null,
             ],
             [
                 'id' => 3,
@@ -54,11 +63,15 @@ class ItemTableSeeder extends Seeder
                 'image' => 'storage/item_images/ショルダーバッグ.jpg',
                 'brand' => 'ルイ・ヴィトン',
                 'price' => 3500,
-                'purchase_user_id' => null,
-                'payment_id' => null,
-                'post_code' => null,
-                'address' => null,
-                'building' => null
+                'purchase_user_id' => 3,
+                'payment_id' => 1,
+                'post_code' => '765-4321',
+                'address' => '福岡県福岡市博多区',
+                'building' => 'ペイペイドーム',
+                'message_status' => 2,
+                'message_updated_at' => Carbon::now()->subDay(),
+                'user_evaluation' => 5,
+                'purchase_user_evaluation' => 2,
             ],
             [
                 'id' => 4,
@@ -73,7 +86,11 @@ class ItemTableSeeder extends Seeder
                 'payment_id' => null,
                 'post_code' => null,
                 'address' => null,
-                'building' => null
+                'building' => null,
+                'message_status' => 0,
+                'message_updated_at' => null,
+                'user_evaluation' => null,
+                'purchase_user_evaluation' => null,
             ],
             [
                 'id' => 5,
@@ -88,7 +105,11 @@ class ItemTableSeeder extends Seeder
                 'payment_id' => null,
                 'post_code' => null,
                 'address' => null,
-                'building' => null
+                'building' => null,
+                'message_status' => 0,
+                'message_updated_at' => null,
+                'user_evaluation' => null,
+                'purchase_user_evaluation' => null,
             ],
             [
                 'id' => 6,
@@ -103,7 +124,11 @@ class ItemTableSeeder extends Seeder
                 'payment_id' => 2,
                 'post_code' => '234-5678',
                 'address' => '北海道旭川市３－４－５',
-                'building' => 'コーチテック旭川支店１Ｆ'
+                'building' => 'コーチテック旭川支店１Ｆ',
+                'message_status' => 1,
+                'message_updated_at' => Carbon::now(),
+                'user_evaluation' => null,
+                'purchase_user_evaluation' => null,
             ],
             [
                 'id' => 7,
@@ -118,7 +143,11 @@ class ItemTableSeeder extends Seeder
                 'payment_id' => null,
                 'post_code' => null,
                 'address' => null,
-                'building' => null
+                'building' => null,
+                'message_status' => 0,
+                'message_updated_at' => null,
+                'user_evaluation' => null,
+                'purchase_user_evaluation' => null,
             ],
             [
                 'id' => 8,
@@ -133,7 +162,11 @@ class ItemTableSeeder extends Seeder
                 'payment_id' => null,
                 'post_code' => null,
                 'address' => null,
-                'building' => null
+                'building' => null,
+                'message_status' => 0,
+                'message_updated_at' => null,
+                'user_evaluation' => null,
+                'purchase_user_evaluation' => null,
             ],
             [
                 'id' => 9,
@@ -144,11 +177,15 @@ class ItemTableSeeder extends Seeder
                 'image' => 'storage/item_images/玉ねぎ3束.jpg',
                 'brand' => '自家栽培',
                 'price' => 300,
-                'purchase_user_id' => null,
-                'payment_id' => null,
-                'post_code' => null,
-                'address' => null,
-                'building' => null
+                'purchase_user_id' => 1,
+                'payment_id' => 2,
+                'post_code' => '556-0002',
+                'address' => '大阪府大阪市浪速区',
+                'building' => '通天閣',
+                'message_status' => 2,
+                'message_updated_at' => Carbon::now()->subDay(10),
+                'user_evaluation' => 1,
+                'purchase_user_evaluation' => 4,
             ],
             [
                 'id' => 10,
@@ -163,7 +200,11 @@ class ItemTableSeeder extends Seeder
                 'payment_id' => 1,
                 'post_code' => '567-8901',
                 'address' => '沖縄県那覇市５－６－７',
-                'building' => 'コーチテックマンション２０５'
+                'building' => 'コーチテックマンション２０５',
+                'message_status' => 2,
+                'message_updated_at' => Carbon::now()->subDay(7),
+                'user_evaluation' => 4,
+                'purchase_user_evaluation' => 5,
             ]
         ];
         DB::table('items')->insert($contents);

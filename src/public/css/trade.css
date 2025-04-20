@@ -22,6 +22,7 @@
     /* flex-direction: column; */
     height: calc(100% - 118px);
     padding: 0 30px 30px 30px;
+    overflow: auto;
 }
 
 .left-container__items a {
