@@ -4,10 +4,8 @@
 }
 
 .left-container {
-    /* flex: 1; */
     width: 300px;
     background-color: rgba(134, 134, 134, 1);
-    /* height: calc(100vh - 56px); */
     height: 100%;
 }
 
@@ -18,8 +16,6 @@
 }
 
 .left-container__items {
-    /* display: flex; */
-    /* flex-direction: column; */
     height: calc(100% - 118px);
     padding: 0 30px 30px 30px;
     overflow: auto;
@@ -79,7 +75,6 @@
 .right-container__top-title>.partner-image{
     width: 70px;
     height: 70px;
-    background-color: gray;
     border-radius: 35px;
     overflow: hidden;
 }
@@ -150,6 +145,10 @@
 }
 
 .right-container__top-item-info>.item-sub-info>.item-price {
+    font-size: 22px;
+}
+
+.right-container__top-item-info>.item-sub-info>.item-price>span {
     font-size: 28px;
 }
 
@@ -190,7 +189,8 @@
 
 .right-container__middle-partner-message .partner-message{
     grid-area: partner-message;
-    width: 500px;
+    /* width: 500px; */
+    width: 70%;
     padding: 15px 10px;
     background-color: rgba(217, 217, 217, 1);
     border: none;
@@ -198,16 +198,26 @@
     font-size: 16px;
     overflow: hidden;
     line-height: 1.5em;
+    resize: none;
+    outline: none;
 }
 
+.right-container__middle-partner-image {
+    text-align: left;
+    padding: 0 30px;
+}
+
+.right-container__middle-partner-image img {
+    max-width: 200px;
+    max-height: 200px;
+}
 
 .right-container__middle-myself-message {
     display: grid;
     grid-template-columns: auto 70px;
-    grid-template-rows: 60px auto 30px;
+    grid-template-rows: 60px auto;
     grid-template-areas: "myself-name myself-image"
-                         "myself-message myself-message"
-                         "myself-forms myself-forms";
+                         "myself-message myself-message";
     row-gap: 10px;
     align-items: center;
     justify-items: end;
@@ -236,28 +246,44 @@
 
 .right-container__middle-myself-message .myself-message {
     grid-area: myself-message;
-    width: 500px;
+    /* width: 500px; */
+    width: 70%;
     padding: 15px 10px;
     background-color: rgba(217, 217, 217, 1);
     border: none;
     border-radius: 5px;
     font-size: 16px;
     line-height: 1.5em;
+    resize: none;
 }
 
-.right-container__middle-myself-message .myself-forms {
+.right-container__middle-myself-forms {
     grid-area: myself-forms;
     display: flex;
+    padding: 0 30px;
+    justify-content: flex-end;
 }
 
-.right-container__middle-myself-message .myself-forms button {
+.right-container__middle-myself-forms button {
     background-color: transparent;
     border: none;
     text-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.right-container__middle-myself-image {
+    text-align: right;
+    padding: 0 30px;
+}
+
+.right-container__middle-myself-image img{
+    max-width: 200px;
+    max-height: 200px;
 }
 
 .right-container__bottom {
-    height: 55px;
+    height: 71px;
+    /* height: 50px; */
 }
 
 .right-container__bottom form{
@@ -341,15 +367,15 @@
     height: 60px;
 }
 
-.modal__button form {
+.modal__send form {
     text-align: right;
 }
 
-.modal__button .radio {
+.modal__send .radio {
     display: none;
 }
 
-.modal__button button {
+.modal__send button {
     background-color: rgba(255, 130, 130, 1);
     color: white;
     border: none;
@@ -357,6 +383,7 @@
     padding: 5px 10px;
     border-radius: 5px;
     margin: 10px 15px;
+    cursor: pointer;
 }
 
 .overlay {
@@ -371,27 +398,13 @@
 
 
 .error {
-    margin-left: 80px;
-    margin-top: 10px;
+    margin-left: 30px;
+    /* margin-top: 10px; */
     color: red;
+    text-align: center;
 }
 
-.error>ul {
-    list-style-type: none;
-}
 
 @media(max-width:1000px) {
-    /* .trade__wrapper {
-        margin-top: 20px;
-        flex-direction: column;
-    } */
-
-    /* .left-container__inner {
-        margin: 0 5%;
-    }
-
-    .right-container__inner {
-        margin: 50px 5%;
-    } */
 
 }

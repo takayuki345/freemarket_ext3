@@ -68,10 +68,10 @@ class ItemTableSeeder extends Seeder
                 'post_code' => '765-4321',
                 'address' => '福岡県福岡市博多区',
                 'building' => 'ペイペイドーム',
-                'message_status' => 2,
+                'message_status' => 1,
                 'message_updated_at' => Carbon::now()->subDay(),
-                'user_evaluation' => 5,
-                'purchase_user_evaluation' => 2,
+                'user_evaluation' => null,
+                'purchase_user_evaluation' => null,
             ],
             [
                 'id' => 4,
@@ -182,10 +182,10 @@ class ItemTableSeeder extends Seeder
                 'post_code' => '556-0002',
                 'address' => '大阪府大阪市浪速区',
                 'building' => '通天閣',
-                'message_status' => 2,
+                'message_status' => 1,
                 'message_updated_at' => Carbon::now()->subDay(10),
-                'user_evaluation' => 1,
-                'purchase_user_evaluation' => 4,
+                'user_evaluation' => null,
+                'purchase_user_evaluation' => null,
             ],
             [
                 'id' => 10,
@@ -201,10 +201,10 @@ class ItemTableSeeder extends Seeder
                 'post_code' => '567-8901',
                 'address' => '沖縄県那覇市５－６－７',
                 'building' => 'コーチテックマンション２０５',
-                'message_status' => 2,
+                'message_status' => 1,
                 'message_updated_at' => Carbon::now()->subDay(7),
-                'user_evaluation' => 4,
-                'purchase_user_evaluation' => 5,
+                'user_evaluation' => null,
+                'purchase_user_evaluation' => null,
             ]
         ];
         DB::table('items')->insert($contents);

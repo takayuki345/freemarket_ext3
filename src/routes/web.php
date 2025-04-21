@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,7 +35,17 @@ Route::middleware('verified')->group( function () {
 
         Route::get('/mypage', [ItemController::class, 'mypage']);
 
-        Route::get('/mypage/trade/{item_id}', [ItemController::class, 'trade']);
+        Route::get('/mypage/trade/{item_id}', [MessageController::class, 'index']);
+
+        Route::post('/mypage/trade/{item_id}/add', [MessageController::class, 'store']);
+
+        Route::post('/mypage/trade/{item_id}/update/{message_id}', [MessageController::class, 'update']);
+
+        Route::post('/mypage/trade/{item_id}/delete/{message_id}', [MessageController::class, 'destroy']);
+
+        Route::post('/mypage/trade/{item_id}/complete', [MessageController::class, 'complete']);
+
+        Route::post('/mypage/trade/{item_id}/send', [MessageController::class, 'send']);
 
         Route::get('/item/{item_id}/like', [ItemController::class, 'like']);
 

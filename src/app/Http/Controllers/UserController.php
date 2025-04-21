@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserInfoRequest;
 use App\Models\User;
 use App\Models\UserInfo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\support\Facades\Auth;
 

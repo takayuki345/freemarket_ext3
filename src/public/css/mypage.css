@@ -180,9 +180,7 @@
 
 
 @media(max-width:1000px) {
-    .mypage__wrapper {
-        /* width: min(500px, 90vw); */
-    }
+    
 }
 
 @media(max-width:900px) {

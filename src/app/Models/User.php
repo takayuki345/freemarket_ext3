@@ -68,8 +68,11 @@ class User extends Authenticatable implements MustVerifyEmail
         $count = Message::where('user_id', '!=', $userId)
             ->where('unchecked', true)
             ->whereHas('item', function($query) use ($userId) {
-                $query->where('user_id', $userId)
-                    ->orWhere('purchase_user_id', $userId);
+                $query->whereIn('message_status', [1, 2])
+                    ->where(function ($subQuery) use ($userId) {
+                        $subQuery->where('user_id', $userId)
+                            ->orWhere('purchase_user_id', $userId);
+                    });
             })->count();
 
         return $count;

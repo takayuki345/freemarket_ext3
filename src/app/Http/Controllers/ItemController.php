@@ -11,6 +11,7 @@ use App\Models\Item;
 use App\Models\Like;
 use App\Models\Payment;
 use App\Models\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\support\Facades\Auth;
@@ -204,9 +205,25 @@ class ItemController extends Controller
         if ($page == 'buy') {
             $items = Item::where('purchase_user_id', $userId)->get();
         } elseif ($page == 'trade') {
+
             $items = Item::where(function ($query) use ($userId) {
-                $query->where('user_id', $userId)->orWhere('purchase_user_id', $userId);
-            })->where('message_status', 1)->get();
+                        $query->where('user_id', $userId)
+                        ->orWhere('purchase_user_id', $userId);
+                    })->whereIn('message_status', [1, 2])
+                      ->where(function ($query) use ($userId){
+                            $query->where(function ($subQuery) use ($userId) {
+                                $subQuery->where('user_id', $userId)
+                                    ->whereNull('purchase_user_evaluation');
+                            })
+                            ->orWhere(function ($subQuery) use ($userId) {
+                                $subQuery->where('purchase_user_id', $userId)
+                                    ->whereNull('user_evaluation');
+                            });
+                      })
+                        ->orderBy('message_updated_at', 'desc')
+                        ->get();
+
+
         } else {
             $items = User::find($userId)->items;
         }
@@ -216,8 +233,6 @@ class ItemController extends Controller
         } else {
             $evaluation = round($user->totalEvaluation() / $user->totalEvaluationCount());
         }
-
-        // dd($evaluation);
 
         return view('mypage', compact('user', 'userInfo', 'items', 'page', 'evaluation'));
     }
@@ -286,19 +301,14 @@ class ItemController extends Controller
         $item->post_code = $request->post_code;
         $item->address = $request->address;
         $item->building = $request->building;
+
+        $item->message_status = 1;
+        $item->message_updated_at = Carbon::now();
+
         $item->save();
 
-        return redirect('/')->with('message', '※商品を購入しました！');;
+        return redirect('/')->with('message', '※商品を購入しました！');
 
     }
 
-    public function trade($item_id)
-    {
-        $item = Item::find($item_id);
-        if ($item->messageCount(Auth::id()) == 0) {
-            return redirect('/mypage?page=trade');
-        }
-
-        return view('trade');
-    }
 }
