@@ -8,19 +8,7 @@
 ### Laravel環境構築
 1. `docker compose exec php bash`
 2. `composer install`
-3. .env.exampleファイルから.envをコピー作成し、以下のように環境変数の値をメンテナンスする
-``` text
-DB_CONNECTION=mysql
-DB_HOST=mysql
-DB_PORT=3306
-DB_DATABASE=laravel_db
-DB_USERNAME=laravel_user
-DB_PASSWORD=laravel_pass
-
-        （中略）
-
-MAIL_FROM_ADDRESS=test@example.com
-```
+3. .env.exampleファイルから.envをコピー作成します。
 4. アプリケーションキーの作成
 ``` bash
 php artisan key:generate
@@ -37,6 +25,11 @@ php artisan db:seed
 ``` bash
 php artisan storage:link
 ```
+8. storageディレクトリへのコピー
+``` bash
+cp -r public/test_images/* public/storage
+```
+
 
 ## 使用技術（実行環境）
 - php 7.4.9
@@ -44,7 +37,7 @@ php artisan storage:link
 - Mysql 8.0.26
 
 ## ER図
-![ER図](ER_Diagram.jpg)
+![ER図](ER図フリマアプリ_追加機能_仮.jpg)
 
 ## URL
 - 開発環境：http://localhost/
@@ -53,4 +46,5 @@ php artisan storage:link
 - MailHog：http://localhost:8025/
 
 ## 備考
-- テスト用のユーザー「test1」、「test2」、「test3」があらかじめ作成されます。それぞれのメールアドレス／パスワードは「test1@test／test1test1」、「test2@test／test2test2」、「test3@test／test3test3」となっております。もちろん、会員登録で新規作成も可能です。
+- テスト用のユーザー「test1」、「test2」、「test3」があらかじめ作成されます。それぞれのメールアドレス／パスワードは「test1@test／test1test1」、「test2@test／test2test2」、「test3@test／test3test3」となっております。
+- 決済時には、.envファイルへのstripeの設定が必要となります。
