@@ -3,12 +3,12 @@
 ## Dockerビルド
 1. GitHubからリポジトリをクローン
 ``` bash
-git clone git@github.com:takayuki345/freemarket_ext3.git`
+git clone git@github.com:takayuki345/freemarket_ext3.git
 ```
 2. DockerDesktopアプリを起動
 3. dockerコンテナ群の起動
 ``` bash
-docker compose up -d --build`
+docker compose up -d --build
 ```
 ### Laravel環境構築
 1. phpコンテナに入る
