@@ -1,14 +1,28 @@
 # フリマアプリ
 
 ## Dockerビルド
-1. `git clone git@github.com:takayuki345/freemarket_ext3.git`
-2. DockerDesktopアプリを起動する
-3. `docker compose up -d --build`
-
+1. GitHubからリポジトリをクローン
+``` bash
+git clone git@github.com:takayuki345/freemarket_ext3.git`
+```
+2. DockerDesktopアプリを起動
+3. dockerコンテナ群の起動
+``` bash
+docker compose up -d --build`
+```
 ### Laravel環境構築
-1. `docker compose exec php bash`
-2. `composer install`
+1. phpコンテナに入る
+``` bash
+docker compose exec php bash
+```
+2. composerのインストール
+``` bash
+composer install
+```
 3. .env.exampleファイルから.envをコピー作成
+``` bash
+cp .env.exampla .env
+```
 4. .envファイルの内容を以下のようにメンテナンス
 ``` text
 DB_CONNECTION=mysql
@@ -27,7 +41,6 @@ MAIL_FROM_ADDRESS=test@example.com（任意のホスト送信メールアドレ�
 STRIPE_PUBLIC_KEY="（公開可能キー）"
 STRIPE_SECRET_KEY="（シークレットキー）"
 ```
-
 5. アプリケーションキーの作成
 ``` bash
 php artisan key:generate
@@ -44,16 +57,14 @@ php artisan db:seed
 ``` bash
 php artisan storage:link
 ```
-9. storageディレクトリへのコピー
+9. storageディレクトリへテスト画像のコピー
 ``` bash
 cp -r public/test_images/* public/storage
 ```
-10. .envファイルへstripeの設定を追加
+10. （上手く起動できない場合に）アクセス権の設定を適用
 ``` bash
-STRIPE_PUBLIC_KEY="（公開可能キー）"
-STRIPE_SECRET_KEY="（シークレットキー）"
+sudo chmod 777 -R src
 ```
-
 ## 使用技術（実行環境）
 - php 7.4.9
 - Laravel 8.83.29
@@ -64,7 +75,6 @@ STRIPE_SECRET_KEY="（シークレットキー）"
 
 ## URL
 - 開発環境：http://localhost/
-***（アクセス権の問題で`sudo chmod 777 -R src`が必要となる場合があります）***
 - pypMyAdmin：http://localhost:8080/
 - MailHog：http://localhost:8025/
 
