@@ -29,7 +29,11 @@ php artisan storage:link
 ``` bash
 cp -r public/test_images/* public/storage
 ```
-
+9. .envファイルへstripeの設定を追加
+``` bash
+STRIPE_PUBLIC_KEY="（公開可能キー）"
+STRIPE_SECRET_KEY="（シークレットキー）"
+```
 
 ## 使用技術（実行環境）
 - php 7.4.9
@@ -37,7 +41,7 @@ cp -r public/test_images/* public/storage
 - Mysql 8.0.26
 
 ## ER図
-![ER図](ER図フリマアプリ_追加機能_仮.jpg)
+![ER図](ER図フリマアプリ_追加機能.jpg)
 
 ## URL
 - 開発環境：http://localhost/
@@ -45,6 +49,20 @@ cp -r public/test_images/* public/storage
 - pypMyAdmin：http://localhost:8080/
 - MailHog：http://localhost:8025/
 
-## 備考
-- テスト用のユーザー「test1」、「test2」、「test3」があらかじめ作成されます。それぞれのメールアドレス／パスワードは「test1@test／test1test1」、「test2@test／test2test2」、「test3@test／test3test3」となっております。
-- 決済時には、.envファイルへのstripeの設定が必要となります。
+## テスト用ユーザー
+
+``` text
+-------------------------
+name: test1
+email: test1@test
+password: test1test1
+-------------------------
+name: test2
+email: test2@test
+password: test2test2
+-------------------------
+name: test3
+email: test3@test
+password: test3test3
+-------------------------
+```
