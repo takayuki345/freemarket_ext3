@@ -178,12 +178,10 @@
     border-radius: 12px;
 }
 
-
-@media(max-width:1000px) {
-    
-}
-
 @media(max-width:900px) {
+    .mypage__wrapper {
+        margin-top: 20px;
+    }
     .mypage__profile-inner {
         margin: 0 50px 50px;
         justify-content: space-around;

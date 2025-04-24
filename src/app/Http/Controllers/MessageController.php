@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MessageRequest;
+use App\Http\Requests\MessageRequest2;
 use App\Models\Item;
 use App\Models\Message;
 use Carbon\Carbon;
@@ -75,14 +76,22 @@ class MessageController extends Controller
         return redirect('/mypage/trade/' . $item_id);
     }
 
-    public function update($item_id, $message_id, Request $request)
+    public function update($item_id, $message_id, MessageRequest2 $request)
     {
+
+        $dir = 'message_images';
+
         $message = Message::find($message_id);
-        $message->content = $request->content;
+        if (!is_null($request->file('post_image'))) {
+            $fileName = current($request->file('post_image'))->getClientOriginalName();
+            current($request->file('post_image'))->storeAs($dir, $fileName, 'public');
+            $message->image = 'storage/' . $dir . '/' . $fileName;
+        }
+        $message->content = current($request->content_edit);
+        $message->unchecked = true;
         $message->save();
 
         return redirect('/mypage/trade/' . $item_id);
-
     }
 
     public function destroy($item_id, $message_id)
@@ -96,13 +105,21 @@ class MessageController extends Controller
 
     public function complete($item_id)
     {
+        $uncheckedCount = Message::where('item_id', $item_id)
+                        ->where('unchecked', true)
+                        ->count();
+
+        if ($uncheckedCount > 0) {
+            return redirect('/mypage/trade/' . $item_id)->with('message', '※未読があり完了不可！');
+        }
+
         $item = Item::find($item_id);
         $item->message_status = 2;
         $item->save();
 
         return redirect('/mypage/trade/' . $item_id);
     }
-    
+
     public function send($item_id, Request $request)
     {
         $userId = Auth::id();

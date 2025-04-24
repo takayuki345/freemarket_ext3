@@ -113,6 +113,13 @@
     cursor: pointer;
 }
 
+.right-container__top-button p {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 5px;
+}
+
 .right-container__top-item-info {
     grid-area: item-info;
     display: flex;
@@ -189,14 +196,12 @@
 
 .right-container__middle-partner-message .partner-message{
     grid-area: partner-message;
-    /* width: 500px; */
     width: 70%;
     padding: 15px 10px;
     background-color: rgba(217, 217, 217, 1);
     border: none;
     border-radius: 5px;
     font-size: 16px;
-    overflow: hidden;
     line-height: 1.5em;
     resize: none;
     outline: none;
@@ -246,7 +251,6 @@
 
 .right-container__middle-myself-message .myself-message {
     grid-area: myself-message;
-    /* width: 500px; */
     width: 70%;
     padding: 15px 10px;
     background-color: rgba(217, 217, 217, 1);
@@ -255,56 +259,87 @@
     font-size: 16px;
     line-height: 1.5em;
     resize: none;
+    outline: none;
 }
 
-.right-container__middle-myself-forms {
+.right-container__middle-myself-buttons {
     grid-area: myself-forms;
     display: flex;
     padding: 0 30px;
     justify-content: flex-end;
 }
 
-.right-container__middle-myself-forms button {
+.right-container__middle-myself-buttons .myself-update-form {
+    display: none;
+}
+
+.right-container__middle-myself-buttons .myself-update,
+.right-container__middle-myself-buttons .myself-edit-cancel,
+.right-container__middle-myself-buttons .myself-edit,
+.right-container__middle-myself-buttons .myself-delete {
     background-color: transparent;
     border: none;
     text-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
     cursor: pointer;
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.right-container__middle-myself-buttons label{
+    display: none;
+    text-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 16px;
+    line-height: 26px;
+    padding: 1px 6px;
+}
+
+.right-container__middle-myself-buttons .myself-edit-cancel {
+    display: none;
 }
 
 .right-container__middle-myself-image {
-    text-align: right;
     padding: 0 30px;
+    text-align: right;
 }
 
-.right-container__middle-myself-image img{
+.right-container__middle-myself-image .post-image-target{
     max-width: 200px;
     max-height: 200px;
 }
 
+.right-container__middle-myself-image .post-image{
+    display: none;
+}
+
 .right-container__bottom {
-    height: 71px;
-    /* height: 50px; */
+    height: 99px;
 }
 
 .right-container__bottom form{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+    display: grid;
+    grid-template-columns: auto 120px 100px;
+    grid-template-rows: repeat(3, 33px);
+    grid-template-areas: "error error post-file"
+                         "post-message post-label post-button"
+                         "image-name image-name . ";
 }
 
 .right-container__bottom .post-message {
     padding: 5px 15px;
     font-size: 16px;
-    width: auto;
-    flex: 1;
     margin-left: 30px;
     margin-right: 15px;
     border-radius: 5px;
+    grid-area: post-message;
 }
 
 .right-container__bottom .post-file {
     display: none;
+    grid-area: post-file;
+    justify-self: right;
+    align-self: center;
 }
 
 .right-container__bottom .post-label {
@@ -315,12 +350,23 @@
     border-radius: 10px;
     cursor: pointer;
     font-weight: bold;
+    grid-area: post-label;
+    text-align: center;
+}
+
+.right-container__bottom .image-name {
+    grid-area: image-name;
+    align-self: center;
+    justify-self:right;
+    margin-right: 10px;
+    font-size: 14px;
 }
 
 .right-container__bottom .post-button {
     border: none;
     background-color: transparent;
     cursor: pointer;
+    grid-area: post-button;
 }
 
 .right-container__bottom .post-button>img {
@@ -337,6 +383,11 @@
     transform: translate(-50%, -50%);
     border: 1px solid black;
     border-radius: 10px;
+    width: 480px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .modal__title {
@@ -356,6 +407,8 @@
 
 .modal__contents .modal__contents-evaluation {
     padding: 15px 0;
+    display: flex;
+    justify-content:center;
 }
 
 .modal__contents .modal__contents-evaluation label:not(:last-of-type) {
@@ -399,12 +452,102 @@
 
 .error {
     margin-left: 30px;
-    /* margin-top: 10px; */
     color: red;
-    text-align: center;
+    grid-area: error;
+    align-self: center;
+    font-size: 14px;
 }
 
+.error2 {
+    color: red;
+    font-size: 14px;
+    margin-left: 30%;
+}
 
 @media(max-width:1000px) {
-
+    .header__wrapper {
+        grid-template-rows: none;
+    }
+    .left-container {
+        width: 200px;
+    }
+    .left-container__title {
+        font-size: 20px;
+    }
+    .left-container__items a {
+        font-size: 14px;
+        min-width: 140px;
+    }
+    .right-container__top {
+        grid-template-columns: auto 160px;
+    }
+    .right-container__top-title>.trade-title {
+        font-size: 20px;
+    }
+    .right-container__top-button button {
+        font-size: 14px;
+    }
+    .right-container__top-button p {
+        font-size: 10px;
+    }
+    .right-container__top-item-info>.item-image {
+        width: 100px;
+        height: 100px;
+    }
+    .right-container__top-item-info>.item-sub-info>.item-name {
+        font-size: 28px;
+    }
+    .right-container__top-item-info>.item-sub-info>.item-price>span {
+        font-size: 22px;
+    }
+    .right-container__middle-partner-message .partner-message {
+        font-size: 14px;
+        padding: 5px;
+        height: 40px;
+    }
+    .right-container__middle-myself-message .myself-message {
+        font-size: 14px;
+        padding: 5px;
+        height: 40px;
+    }
+    .right-container__bottom {
+        height: 75px;
+    }
+    .right-container__bottom form {
+        grid-template-columns: auto 110px 90px;
+        grid-template-rows: repeat(3, 25px);
+    }
+    .right-container__bottom .post-message{
+        font-size: 14px;
+    }
+    .right-container__bottom .post-label {
+        font-size: 14px;
+        padding: 3px 7px;
+    }
+    .right-container__bottom .image-name {
+        font-size: 12px;
+    }
+    .right-container__bottom .post-button>img {
+        width: 45px;
+    }
+    .modal {
+        width: 60%;
+        height: 250px;
+    }
+    .modal__title {
+        font-size: 24px;
+    }
+    .modal__contents .modal__contents-evaluation img {
+        width: 45px;
+        height: 45px;
+    }
+    .modal__send button {
+        font-size: 16px;
+    }
+    .error {
+        font-size: 12px;
+    }
+    .error2 {
+        font-size: 12px;
+    }
 }
