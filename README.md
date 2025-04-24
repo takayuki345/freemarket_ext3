@@ -21,7 +21,7 @@ composer install
 ```
 3. .env.exampleファイルから.envをコピー作成
 ``` bash
-cp .env.exampla .env
+cp .env.example .env
 ```
 4. .envファイルの内容を以下のようにメンテナンス
 ``` text
