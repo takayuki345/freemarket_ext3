@@ -1,7 +1,7 @@
 # フリマアプリ
 
 ## Dockerビルド
-1. `git clone git@github.com:takayuki345/freemarket.git`
+1. `git clone git@github.com:takayuki345/freemarket_ext3.git`
 2. DockerDesktopアプリを起動する
 3. `docker compose up -d --build`
 
